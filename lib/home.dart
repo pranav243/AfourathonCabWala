@@ -21,28 +21,13 @@ class _HomeState extends State<Home> {
         elevation: 0,
         backgroundColor: Colors.white,
         leadingWidth: 0,
-        title: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Container(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-              height: ScreenUtil().setHeight(36),
-              width: ScreenUtil().setWidth(120),
-              child: Text.rich(
-                // "Cab",
-                // style: TextStyle(
-                //     color: Colors.black, fontSize: ScreenUtil().setSp(30)),
-                TextSpan(
-                    text: 'Cab',
-                    style: TextStyle(
-                        color: Colors.black, fontSize: ScreenUtil().setSp(30)),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: 'Wala',
-                          style: TextStyle(
-                              color: Color.fromARGB(1, 9, 100, 140),
-                              fontSize: ScreenUtil().setSp(30)))
-                    ]),
-              )),
-        ]),
+        title: Container(
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+            height: ScreenUtil().setHeight(36),
+            width: ScreenUtil().setWidth(120),
+            child: Text('CabWala',
+                style: TextStyle(
+                    color: Colors.black, fontSize: ScreenUtil().setSp(30)))),
         actions: [
           Padding(
             padding:
@@ -57,8 +42,23 @@ class _HomeState extends State<Home> {
           children: <Widget>[],
         ),
       ),
-      bottomNavigationBar: Text("Bottombar"),
-      // This trailing comma makes auto-formatting nicer for build methods.
+      extendBody: true,
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+        child: BottomNavigationBar(
+            backgroundColor: Color.fromRGBO(9, 100, 140, 1),
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            items: [
+              BottomNavigationBarItem(
+                  icon: SvgPicture.asset("images/home.svg"), label: 'home'),
+              BottomNavigationBarItem(
+                  icon: SvgPicture.asset("images/profileset.svg"),
+                  label: 'profileSettings')
+            ]),
+      ),
+      // )
     );
   }
 }
