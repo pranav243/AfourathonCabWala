@@ -28,14 +28,12 @@ class _AddDriverState extends State<AddDriver> {
               ],
             ),
             const SizedBox(
-              height: 15,
+              height: 5,
             ),
-            // InputBox("Driver ID"),
             InputBox("Name", TextInputType.name),
             InputBox("Contact", TextInputType.phone),
             InputBox("Email ID", TextInputType.emailAddress),
             InputBox("Hometown", TextInputType.name),
-
             Container(
               alignment: Alignment.center,
               width: 307.91,
