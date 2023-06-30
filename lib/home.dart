@@ -142,20 +142,7 @@ class _HomeState extends State<Home> {
         ),
       ),
       extendBody: true,
-      bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-        child: BottomNavigationBar(
-            backgroundColor: const Color.fromRGBO(9, 100, 140, 1),
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            items: [
-              BottomNavBarHome(1),
-              BottomNavigationBarItem(
-                  icon: SvgPicture.asset("images/profileset.svg"),
-                  label: 'profileSettings')
-            ]),
-      ),
+      bottomNavigationBar: BottomNavBar(1, 0),
       // )
     );
   }
