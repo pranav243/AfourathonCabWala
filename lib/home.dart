@@ -1,4 +1,5 @@
 import 'package:cabwala/manage_drivers.dart';
+import 'package:cabwala/manage_cabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'widgets.dart';
@@ -37,7 +38,6 @@ class _HomeState extends State<Home> {
                     color: Colors.black,
                     // fontSize: ScreenUtil().setSp(30)))),
                     fontSize: (30)))),
-
         actions: [
           Padding(
             padding:
@@ -82,36 +82,40 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              padding: const EdgeInsets.only(left: 20),
-              // height: ScreenUtil().setHeight(74),
-              // width: ScreenUtil().setWidth(312),
-              height: (74),
-              width: (312),
-              decoration: BoxDecoration(
-                  color: const Color.fromRGBO(39, 149, 208, 0.27),
-                  borderRadius: BorderRadius.circular(15)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Stack(alignment: Alignment.center, children: [
-                    SvgPicture.asset("images/ellipse.svg"),
-                    SvgPicture.asset("images/cab.svg")
-                  ]),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  TitleWidget("Manage Cabs", "Add/Delete/Update Cabs"),
-                  const SizedBox(
-                    width: 60,
-                  ),
-                  SvgPicture.asset("images/rightarrow.svg")
-                ],
+            // const SizedBox(
+            //   height: 20,
+            // ),
+            InkWell(
+              onTap: () => Navigator.pushNamed(context, CabManager.id),
+              child: Container(
+                margin: const EdgeInsets.only(top: 15),
+                padding: EdgeInsets.only(left: 20),
+                // height: ScreenUtil().setHeight(74),
+                // width: ScreenUtil().setWidth(312),
+                height: (74),
+                width: (312),
+                decoration: BoxDecoration(
+                    color: const Color.fromRGBO(39, 149, 208, 0.27),
+                    borderRadius: BorderRadius.circular(15)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Stack(alignment: Alignment.center, children: [
+                      SvgPicture.asset("images/ellipse.svg"),
+                      SvgPicture.asset("images/cab.svg")
+                    ]),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    TitleWidget("Manage Cabs", "Add/Delete/Update Cabs"),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    SvgPicture.asset("images/rightarrow.svg")
+                  ],
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),

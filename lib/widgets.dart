@@ -71,6 +71,7 @@ Column TitleWidget(title, description) {
       Text(
         title,
         style: const TextStyle(
+            color: Color(0xFF333434),
             fontWeight: FontWeight.w500, fontSize: 16, letterSpacing: 0.5),
       ),
       const SizedBox(
@@ -79,6 +80,7 @@ Column TitleWidget(title, description) {
       ),
       Text(description,
           style: const TextStyle(
+              color: Color(0xFF333434),
               fontWeight: FontWeight.w400, fontSize: 10, letterSpacing: 0.5))
     ],
   );

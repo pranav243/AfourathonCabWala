@@ -2,6 +2,7 @@ import 'package:cabwala/add_driver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cabwala/widgets.dart';
+import 'searchbar.dart';
 
 class DriverManager extends StatefulWidget {
   static String id = 'drivermanager_screen';
@@ -52,6 +53,10 @@ class _DriverManagerState extends State<DriverManager> {
                 ),
               ),
             ),
+            Container(
+            margin: EdgeInsets.only(top: 12),
+            child: SearchBarWidget(),
+          ),
           ],
         ),
       ),
