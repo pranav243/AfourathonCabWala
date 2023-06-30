@@ -1,3 +1,5 @@
+import 'package:cabwala/add_driver.dart';
+import 'package:cabwala/manage_drivers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:io';
@@ -20,14 +22,16 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             // title: 'Flutter Demo',
             theme: ThemeData(
-                fontFamily: 'Poppins', scaffoldBackgroundColor: Colors.white
-                // primarySwatch: Colors.blue,
-                ),
+              fontFamily: 'Poppins', scaffoldBackgroundColor: Colors.white,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              // primarySwatch: Colors.blue,
+            ),
             initialRoute: Home.id,
             routes: {
               Home.id: (context) => Home(),
-              // Levels.id: (context) => Levels(),
-              // Level1.id: (context) => Level1(),
+              DriverManager.id: (context) => DriverManager(),
+              AddDriver.id: (context) => AddDriver(),
               // ChatScreen.id: (context) => ChatScreen()
             },
             // home: const MyHomePage(title: 'Flutter Demo Home Page'),
