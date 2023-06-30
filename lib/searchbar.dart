@@ -26,10 +26,11 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           fillColor: const Color(0xFFEAF7FF),
           hintText: 'Search',
           hintStyle: const TextStyle(
-                      color:  Color(0xBF606060),
-                      fontSize: 14,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w400,),
+            color: Color(0xBF606060),
+            fontSize: 14,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w400,
+          ),
           prefixIcon: const Icon(Icons.search, color: Color(0xFF09648C)),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25),

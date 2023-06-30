@@ -85,13 +85,12 @@ class _CabManagerState extends State<CabManager> {
               ),
             ),
             Container(
-            margin: EdgeInsets.only(top: 12),
-            child: SearchBarWidget(),
-          ),
+              margin: EdgeInsets.only(top: 12),
+              child: SearchBarWidget(),
+            ),
           ],
         ),
       ),
-
       extendBody: true,
       bottomNavigationBar: BottomNavBar(0, 0),
     );

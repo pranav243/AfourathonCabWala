@@ -1,4 +1,4 @@
-#Sat Jul 01 00:29:22 IST 2023
-base.0=/Users/anshavikhanna/Desktop/Dev/Hackathons/AfourathonCabWala/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-path.0=classes.dex
+#Sat Jul 01 01:14:07 IST 2023
+base.0=/home/pranav/Desktop/AppDev/AfourathonCabWala/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
+path.0=classes.dex

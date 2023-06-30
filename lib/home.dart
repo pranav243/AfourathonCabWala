@@ -1,7 +1,7 @@
 import 'package:cabwala/manage_drivers.dart';
-import 'package:cabwala/manage_cabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'manage_cabs.dart';
 import 'widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -38,6 +38,7 @@ class _HomeState extends State<Home> {
                     color: Colors.black,
                     // fontSize: ScreenUtil().setSp(30)))),
                     fontSize: (30)))),
+
         actions: [
           Padding(
             padding:
@@ -82,14 +83,13 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            // const SizedBox(
-            //   height: 20,
-            // ),
+            const SizedBox(
+              height: 20,
+            ),
             InkWell(
               onTap: () => Navigator.pushNamed(context, CabManager.id),
               child: Container(
-                margin: const EdgeInsets.only(top: 15),
-                padding: EdgeInsets.only(left: 20),
+                padding: const EdgeInsets.only(left: 20),
                 // height: ScreenUtil().setHeight(74),
                 // width: ScreenUtil().setWidth(312),
                 height: (74),
@@ -109,13 +109,13 @@ class _HomeState extends State<Home> {
                     ),
                     TitleWidget("Manage Cabs", "Add/Delete/Update Cabs"),
                     const SizedBox(
-                      width: 50,
+                      width: 60,
                     ),
                     SvgPicture.asset("images/rightarrow.svg")
                   ],
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
