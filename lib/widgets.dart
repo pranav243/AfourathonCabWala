@@ -1,42 +1,47 @@
+import 'package:cabwala/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-Column InputBox(title, keyboardType) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Container(
-        margin: const EdgeInsets.only(left: 10, bottom: 5),
-        child: Text(
-          title,
-          style: const TextStyle(
-              color: Color.fromRGBO(144, 152, 177, 1),
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 0.5),
-        ),
-      ),
-      SizedBox(
-        height: 46.79,
-        width: 307.91,
-        child: TextField(
-          autocorrect: false,
-          textAlignVertical: TextAlignVertical.center,
-          keyboardType: keyboardType,
-          style: const TextStyle(
-              fontWeight: FontWeight.w400,
-              color: Color.fromRGBO(51, 52, 52, 1)),
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      width: 1, color: Color.fromRGBO(196, 196, 196, 1)),
-                  borderRadius: BorderRadius.all(Radius.circular(10)))),
-        ),
-      ),
-      const SizedBox(
-        height: 20,
-      )
-    ],
+// Column InputBox(title, keyboardType) {
+//   return Column(
+//     crossAxisAlignment: CrossAxisAlignment.start,
+//     children: [
+//       InputTitle(title),
+//       SizedBox(
+//         height: 46.79,
+//         width: 307.91,
+//         child: TextField(
+//           autocorrect: false,
+//           textAlignVertical: TextAlignVertical.center,
+//           keyboardType: keyboardType,
+//           style: const TextStyle(
+//               fontWeight: FontWeight.w400,
+//               color: Color.fromRGBO(51, 52, 52, 1)),
+//           decoration: const InputDecoration(
+//               border: OutlineInputBorder(
+//                   borderSide: BorderSide(
+//                       width: 1, color: Color.fromRGBO(196, 196, 196, 1)),
+//                   borderRadius: BorderRadius.all(Radius.circular(10)))),
+//         ),
+//       ),
+//       const SizedBox(
+//         height: 20,
+//       )
+//     ],
+//   );
+// }
+
+Container InputTitle(title) {
+  return Container(
+    margin: const EdgeInsets.only(left: 10, bottom: 5),
+    child: Text(
+      title,
+      style: const TextStyle(
+          color: Color.fromRGBO(144, 152, 177, 1),
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+          letterSpacing: 0.5),
+    ),
   );
 }
 
@@ -92,7 +97,7 @@ Column TitleWidget(title, description) {
   );
 }
 
-ClipRRect BottomNavBar(homeSelected, profilesetSelected) {
+ClipRRect BottomNavBar(homeSelected, profilesetSelected, context) {
   return ClipRRect(
     borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(20), topRight: Radius.circular(20)),
@@ -101,13 +106,13 @@ ClipRRect BottomNavBar(homeSelected, profilesetSelected) {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: [
-          BottomNavBarHome(homeSelected),
+          BottomNavBarHome(homeSelected, context),
           BottomNavBarProfileSettings(profilesetSelected),
         ]),
   );
 }
 
-BottomNavigationBarItem BottomNavBarHome(selected) {
+BottomNavigationBarItem BottomNavBarHome(selected, context) {
   if (selected == 1) {
     return BottomNavigationBarItem(
         icon: Stack(alignment: Alignment.topCenter, children: [
@@ -123,7 +128,11 @@ BottomNavigationBarItem BottomNavBarHome(selected) {
         label: 'home');
   } else {
     return BottomNavigationBarItem(
-        icon: SvgPicture.asset("images/home.svg"), label: 'home');
+        icon: InkWell(
+            onTap: () =>
+                Navigator.popUntil(context, ModalRoute.withName(Home.id)),
+            child: SvgPicture.asset("images/home.svg")),
+        label: 'home');
   }
 }
 

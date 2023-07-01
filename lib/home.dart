@@ -120,8 +120,12 @@ class _HomeState extends State<Home> {
         ),
       ),
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(1, 0),
+      bottomNavigationBar: BottomNavBar(1, 0, context),
       // )
     );
   }
 }
+
+// plugins {
+//   id 'com.google.gms.google-services' version '4.3.15' apply false
+// }

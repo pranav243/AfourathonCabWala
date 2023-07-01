@@ -61,7 +61,7 @@ class _DriverManagerState extends State<DriverManager> {
         ),
       ),
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(0, 0),
+      bottomNavigationBar: BottomNavBar(0, 0, context),
     );
   }
 }

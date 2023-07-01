@@ -92,7 +92,7 @@ class _CabManagerState extends State<CabManager> {
         ),
       ),
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(0, 0),
+      bottomNavigationBar: BottomNavBar(0, 0, context),
     );
   }
 }
