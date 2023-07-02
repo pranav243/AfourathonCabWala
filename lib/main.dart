@@ -2,7 +2,7 @@ import 'package:cabwala/add_driver.dart';
 import 'package:cabwala/manage_drivers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'dart:io';
+import 'list_cabs.dart';
 import 'add_cab.dart';
 import 'home.dart';
 import 'manage_cabs.dart';
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
               AddDriver.id: (context) => AddDriver(),
               CabManager.id: (context) => const CabManager(),
               AddCab.id: (context) => const AddCab(),
-              // ChatScreen.id: (context) => ChatScreen()
+              ListCabs.id: (context) => const ListCabs(),
             },
             // home: const MyHomePage(title: 'Flutter Demo Home Page'),
           );

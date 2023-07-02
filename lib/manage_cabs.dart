@@ -2,6 +2,7 @@ import 'package:cabwala/add_cab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cabwala/widgets.dart';
+import 'list_cabs.dart';
 import 'searchbar.dart';
 
 class CabManager extends StatefulWidget {
@@ -54,7 +55,7 @@ class _CabManagerState extends State<CabManager> {
               ),
             ),
             InkWell(
-              onTap: () => Navigator.pushNamed(context, AddCab.id),
+              onTap: () => Navigator.pushNamed(context, ListCabs.id),
               child: Container(
                 margin: const EdgeInsets.only(top: 15),
                 padding: const EdgeInsets.only(left: 20),
@@ -75,19 +76,19 @@ class _CabManagerState extends State<CabManager> {
                     const SizedBox(
                       width: 20,
                     ),
-                    TitleWidget("List Cabs", "List all owned cabs"),
+                    TitleWidget("Cab Details", "Search/Edit/Remove Cabs"),
                     const SizedBox(
-                      width: 80,
+                      width: 50,
                     ),
                     SvgPicture.asset("images/rightarrow.svg")
                   ],
                 ),
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(top: 12),
-              child: SearchBarWidget(),
-            ),
+            // Container(
+            //   margin: EdgeInsets.only(top: 12),
+            //   child: SearchBarWidget(),
+            // ),
           ],
         ),
       ),
