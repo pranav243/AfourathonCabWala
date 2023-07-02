@@ -20,24 +20,24 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        // toolbarHeight: ScreenUtil().setHeight(60),
-        toolbarHeight: (60),
+        toolbarHeight: ScreenUtil().setHeight(60),
+        // toolbarHeight: (60),
         elevation: 0,
         backgroundColor: Colors.white,
         leadingWidth: 0,
         title: Container(
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-            // height: ScreenUtil().setHeight(36),
-            // width: ScreenUtil().setWidth(120),
-            height: (36),
-            width: (120),
-            child: const Text('CabWala',
+            height: ScreenUtil().setHeight(36),
+            width: ScreenUtil().setWidth(120),
+            // height: (36),
+            // width: (120),
+            child:  Text('CabWala',
                 style: TextStyle(
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    // fontSize: ScreenUtil().setSp(30)))),
-                    fontSize: (30)))),
+                    fontSize: ScreenUtil().setSp(27)))),
+                    // fontSize: (30)))),
 
         actions: [
           Padding(
