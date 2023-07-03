@@ -1,4 +1,5 @@
 import 'package:cabwala/add_driver.dart';
+import 'package:cabwala/list_drivers.dart';
 import 'package:cabwala/manage_drivers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,12 +35,13 @@ class MyApp extends StatelessWidget {
             ),
             initialRoute: Home.id,
             routes: {
-              Home.id: (context) => Home(),
-              DriverManager.id: (context) => DriverManager(),
-              AddDriver.id: (context) => AddDriver(),
+              Home.id: (context) => const Home(),
+              DriverManager.id: (context) => const DriverManager(),
+              AddDriver.id: (context) => const AddDriver(),
               CabManager.id: (context) => const CabManager(),
               AddCab.id: (context) => const AddCab(),
               ListCabs.id: (context) => const ListCabs(),
+              ListDrivers.id: (context) => const ListDrivers(),
             },
             // home: const MyHomePage(title: 'Flutter Demo Home Page'),
           );

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SearchBarWidget extends StatefulWidget {
+  SearchBarWidget({super.key, required this.searchfor});
+  String searchfor;
   @override
   _SearchBarWidgetState createState() => _SearchBarWidgetState();
 }
@@ -24,7 +26,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
         decoration: InputDecoration(
           filled: true,
           fillColor: const Color(0xFFEAF7FF),
-          hintText: 'Search',
+          hintText: 'Search for ${widget.searchfor}',
           hintStyle: const TextStyle(
             color: Color(0xBF606060),
             fontSize: 14,

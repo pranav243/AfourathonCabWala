@@ -3,15 +3,15 @@ import 'package:cabwala/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class ListCabs extends StatefulWidget {
-  static String id = 'listcabs_screen';
-  const ListCabs({super.key});
+class ListDrivers extends StatefulWidget {
+  static String id = 'listdrivers_screen';
+  const ListDrivers({super.key});
 
   @override
-  State<ListCabs> createState() => _ListCabsState();
+  State<ListDrivers> createState() => _ListDriversState();
 }
 
-class _ListCabsState extends State<ListCabs> {
+class _ListDriversState extends State<ListDrivers> {
   final _firestore = FirebaseFirestore.instance;
   List<Widget> cabsWidget = [];
 
@@ -20,8 +20,8 @@ class _ListCabsState extends State<ListCabs> {
   }
 
   void getMessagesStream() async {
-    await for (var snapshot in _firestore.collection("Cabs").snapshots()) {
-      for (var cab in snapshot.docs) {
+    await for (var snapshot in _firestore.collection("Drivers").snapshots()) {
+      for (var driver in snapshot.docs) {
         // print(msg.data());
         // cabsFirebase.add(cab.data());
         Widget widget = Container(
@@ -44,7 +44,7 @@ class _ListCabsState extends State<ListCabs> {
               const SizedBox(
                 width: 20,
               ),
-              TitleWidget(cab.data()['RegNumber'], cab.data()['Model']),
+              TitleWidget(driver.data()['Name'], driver.data()['Contact']),
               const SizedBox(
                 width: 50,
               ),
@@ -68,7 +68,7 @@ class _ListCabsState extends State<ListCabs> {
           children: [
             Container(
               // margin: EdgeInsets.only(top: 12),
-              child: SearchBarWidget(searchfor: 'Cabs'),
+              child: SearchBarWidget(searchfor: 'Drivers'),
             ),
             // StreamBuilder<QuerySnapshot>(
             //   stream: _firestore.collection("Cabs").snapshots(),
