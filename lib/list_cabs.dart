@@ -66,10 +66,7 @@ class _ListCabsState extends State<ListCabs> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              // margin: EdgeInsets.only(top: 12),
-              child: SearchBarWidget(searchfor: 'Cabs'),
-            ),
+            SearchBarWidget(searchfor: 'Cabs'),
             // StreamBuilder<QuerySnapshot>(
             //   stream: _firestore.collection("Cabs").snapshots(),
             //   builder: (context, snapshot) {

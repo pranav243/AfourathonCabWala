@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.cabwala.app-mergeDebugResources-13:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.example.cabwala.app-mergeDebugResources-14:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/home/pranav/Desktop/AppDev/AfourathonCabWala/android/app/src/main/res/values-night/styles.xml",
+                    "source": "/Users/anshavikhanna/Desktop/Dev/Hackathons/AfourathonCabWala/android/app/src/main/res/values-night/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

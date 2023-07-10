@@ -14,7 +14,7 @@ class AddCab extends StatefulWidget {
 class _AddCabState extends State<AddCab> {
   final _firestore = FirebaseFirestore.instance;
 
-  String regno = '', model = '', colour = '', type = '';
+  String regno = '', model = '', colour = '', type = '',location='';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +37,7 @@ class _AddCabState extends State<AddCab> {
             InputBox("Registration Number", TextInputType.name),
             InputBox("Model", TextInputType.name),
             InputBox("Colour", TextInputType.name),
+            InputBox("Location", TextInputType.name),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               InputTitle("Cab Type"),
               SizedBox(
@@ -84,6 +85,7 @@ class _AddCabState extends State<AddCab> {
                   'Colour': colour,
                   'Model': model,
                   'RegNumber': regno,
+                  'Location': location,
                   'Type': type
                 });
               },
@@ -129,6 +131,8 @@ class _AddCabState extends State<AddCab> {
                 colour = value;
               } else if (title == 'Cab Type') {
                 type = value;
+              } else if (title == 'Location') {
+                location = value;
               }
             },
             autocorrect: false,
