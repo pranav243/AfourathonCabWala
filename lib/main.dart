@@ -1,4 +1,5 @@
 import 'package:cabwala/add_driver.dart';
+import 'package:cabwala/cab_profile.dart';
 import 'package:cabwala/list_drivers.dart';
 import 'package:cabwala/login.dart';
 import 'package:cabwala/manage_drivers.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
               highlightColor: Colors.transparent,
               // primarySwatch: Colors.blue,
             ),
-            home: FirebaseSearchScreen(),
+            home: Search(),
             // initialRoute: Home.id,
             routes: {
               Home.id: (context) => const Home(),
@@ -58,7 +59,9 @@ class MyApp extends StatelessWidget {
               AddManager.id: (context) => const AddManager(),
               OwnerLogin.id: (context) => const OwnerLogin(),
               Register.id: (context) => const Register(),
-              FirebaseSearchScreen.id: (context) => const FirebaseSearchScreen(),
+              Search.id: (context) => const Search(),
+              // CabProfile.id: (context) => const CabProfile(),
+              // FirebaseSearchScreen.id: (context) => const FirebaseSearchScreen(),
               
             },
             // home: const MyHomePage(title: 'Flutter Demo Home Page'),
