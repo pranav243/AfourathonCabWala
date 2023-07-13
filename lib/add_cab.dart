@@ -17,6 +17,7 @@ class _AddCabState extends State<AddCab> {
   final _firestore = FirebaseFirestore.instance;
 
   String regno = '', model = '', colour = '', type = '',location='';
+  String linkedTo = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +89,9 @@ class _AddCabState extends State<AddCab> {
                   'Model': model,
                   'RegNumber': regno,
                   'Location': location,
-                  'Type': type
+                  'Type': type,
+                  'Linked': false,
+                  'Driver Linked':linkedTo,
                 });
                 Navigator.push(
             context,
