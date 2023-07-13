@@ -34,7 +34,7 @@ class _CabProfileState extends State<CabProfile> {
             actions: [
               ElevatedButton(
                 style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFE86666)), // Set the background color
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFE86666)), // Set the background color
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
                  overlayColor: MaterialStateProperty.all<Color>(Colors.white),
                 // Add more style properties as needed
@@ -57,7 +57,7 @@ class _CabProfileState extends State<CabProfile> {
               child: const Text("Delete")),
               ElevatedButton(
                 style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
                  overlayColor: MaterialStateProperty.all<Color>(Colors.white),
                 // Add more style properties as needed
@@ -78,7 +78,7 @@ class _CabProfileState extends State<CabProfile> {
             actions: [
               ElevatedButton(
                 style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
                  overlayColor: MaterialStateProperty.all<Color>(Colors.white),
 
@@ -100,7 +100,7 @@ class _CabProfileState extends State<CabProfile> {
               }, child: const Text("Yes")),
               ElevatedButton(
                 style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
                  overlayColor: MaterialStateProperty.all<Color>(Colors.white),
                 // Add more style properties as needed
@@ -220,7 +220,7 @@ class _CabProfileState extends State<CabProfile> {
                 width: 307.91,
                 height: 46.79,
                 decoration: BoxDecoration(
-                    color: Color(0xFF09648C),
+                    color: const Color(0xFF09648C),
                     borderRadius: BorderRadius.circular(20)),
                 child: const Text(
                   "Save Changes",
@@ -244,7 +244,7 @@ class _CabProfileState extends State<CabProfile> {
                 width: 307.91,
                 height: 46.79,
                 decoration: BoxDecoration(
-                    color: Color(0xFFE86666),
+                    color: const Color(0xFFE86666),
                     borderRadius: BorderRadius.circular(20)),
                 child: const Text(
                   "Remove Cab",

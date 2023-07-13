@@ -1,6 +1,4 @@
-import 'package:cabwala/cab_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cabwala/widgets.dart';
@@ -129,7 +127,7 @@ Widget build(BuildContext context) {
               height: 34,
               alignment: Alignment.center,
               child: CupertinoSearchTextField(
-                prefixInsets: EdgeInsets.fromLTRB(20, 5, 5, 5),
+                prefixInsets: const EdgeInsets.fromLTRB(20, 5, 5, 5),
                 prefixIcon: const Icon(
                   CupertinoIcons.search,
                   color: Colors.black54,
@@ -150,10 +148,10 @@ Widget build(BuildContext context) {
                 style: const TextStyle(),
               ),
             ),
-            SizedBox(
+            const SizedBox(
             height: 16,
           ),
-          Text(
+          const Text(
             'Choose driver to edit details',
             textAlign: TextAlign.center,
             style: TextStyle(

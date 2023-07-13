@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cabwala/widgets.dart';
-import 'package:cabwala/register.dart';
 import 'owner_home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -43,7 +42,7 @@ class _OwnerLoginState extends State<OwnerLogin> {
             actions: [
               ElevatedButton(
                 style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
                  overlayColor: MaterialStateProperty.all<Color>(Colors.white),
                 // Add more style properties as needed
@@ -65,7 +64,7 @@ Future<void> notRegistered() async {
             actions: [
               ElevatedButton(
                 style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
                  overlayColor: MaterialStateProperty.all<Color>(Colors.white),
                 // Add more style properties as needed

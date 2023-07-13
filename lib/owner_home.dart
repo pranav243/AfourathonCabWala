@@ -1,10 +1,7 @@
-import 'package:cabwala/manage_drivers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'manage_cabs.dart';
 import 'widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:cabwala/manage_managers.dart';
 import 'package:cabwala/add_manager.dart';
 
 class OwnerHome extends StatefulWidget {
@@ -45,7 +42,7 @@ class _OwnerHomeState extends State<OwnerHome> {
                     style: TextStyle(
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w600,
-                        color: Color.fromRGBO(9, 100, 140, 1),
+                        color: const Color.fromRGBO(9, 100, 140, 1),
                         fontSize: ScreenUtil().setSp(27)))
               ],
             )),
@@ -68,7 +65,7 @@ class _OwnerHomeState extends State<OwnerHome> {
               onTap: () => Navigator.pushNamed(context, AddManager.id),
               child: Container(
                 margin: const EdgeInsets.only(top: 15),
-                padding: EdgeInsets.only(left: 20),
+                padding: const EdgeInsets.only(left: 20),
                 // height: ScreenUtil().setHeight(74),
                 // width: ScreenUtil().setWidth(312),
                 height: (74),

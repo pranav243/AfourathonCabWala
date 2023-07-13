@@ -3,8 +3,6 @@ import 'package:cabwala/search_cabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cabwala/widgets.dart';
-import 'list_cabs.dart';
-import 'searchbar.dart';
 
 class CabManager extends StatefulWidget {
   static String id = 'CabManager_screen';

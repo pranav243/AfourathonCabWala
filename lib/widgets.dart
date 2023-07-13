@@ -68,14 +68,14 @@ AppBar regularAppBar(BuildContext context) {
     backgroundColor: Colors.white,
     leadingWidth: 0,
     title: InkWell(
-        onTap: () => Navigator.pop(context),
+        onTap: ()=> Navigator.of(context).popUntil((route) => route.isFirst),
         child: SvgPicture.asset("images/backbutton.svg")),
 
-    actions: [
+    actions: const [
       Padding(
         padding:
             // EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
-            const EdgeInsets.symmetric(horizontal: (20)),
+            EdgeInsets.symmetric(horizontal: (20)),
         // child: SvgPicture.asset("images/profile.svg"),
       )
     ],
@@ -196,7 +196,7 @@ BottomNavigationBarItem BottomNavBarHome(selected, context) {
     return BottomNavigationBarItem(
         icon: InkWell(
             onTap: () =>
-                Navigator.popUntil(context, ModalRoute.withName(Home.id)),
+                Navigator.of(context).popUntil((route) => route.isFirst),
             child: SvgPicture.asset("images/home0.svg")),
         label: 'home');
   }

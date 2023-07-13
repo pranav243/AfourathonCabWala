@@ -28,7 +28,7 @@ class _AddManagerState extends State<AddManager> {
             actions: [
               ElevatedButton(
                 style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFE86666)), // Set the background color
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFE86666)), // Set the background color
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
                  overlayColor: MaterialStateProperty.all<Color>(Colors.white),
                 // Add more style properties as needed
@@ -57,7 +57,7 @@ class _AddManagerState extends State<AddManager> {
               child: const Text("Yes")),
               ElevatedButton(
                 style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
                  overlayColor: MaterialStateProperty.all<Color>(Colors.white),
                 // Add more style properties as needed

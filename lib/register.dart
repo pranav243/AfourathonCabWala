@@ -22,7 +22,7 @@ class _RegisterState extends State<Register> {
   String _email = '';
   String _password = '';
   String _name = '';
-  String _contact = '';
+  final String _contact = '';
 
   Future<Map<String, dynamic>> checkValueExists(String collectionPath, String fieldName, String valueToCheck) async {
     final QuerySnapshot snapshot = await FirebaseFirestore.instance
@@ -48,7 +48,7 @@ Future<void> notAuthorized() async {
             actions: [
               ElevatedButton(
                 style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
                  overlayColor: MaterialStateProperty.all<Color>(Colors.white),
                 // Add more style properties as needed
@@ -150,7 +150,7 @@ Future<void> notAuthorized() async {
                 width: 248,
                 height: 69,
               ),
-              SizedBox(width: 50),
+              const SizedBox(width: 50),
             ],
           ),
           SizedBox(

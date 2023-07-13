@@ -1,6 +1,4 @@
-import 'package:cabwala/cab_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cabwala/widgets.dart';
@@ -102,11 +100,11 @@ class _SearchForCabsState extends State<SearchForCabs> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               width: 335,
               height: 40,
               child: CupertinoSearchTextField(
-                prefixInsets: EdgeInsets.fromLTRB(20, 5, 5, 5),
+                prefixInsets: const EdgeInsets.fromLTRB(20, 5, 5, 5),
                 padding :const EdgeInsetsDirectional.fromSTEB(0, 11, 0, 8),
                 // padding: EdgeInsets.only(top: 10, bottom: 5),
                 controller: _searchController,
