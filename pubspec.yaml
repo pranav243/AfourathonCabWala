@@ -40,7 +40,7 @@ dependencies:
   cloud_firestore: ^4.8.2
   firebase_core: ^2.14.0
   firebase_auth: ^4.6.3
-
+  flutter_csc_picker:
 dev_dependencies:
   flutter_test:
     sdk: flutter

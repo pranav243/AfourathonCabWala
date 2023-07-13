@@ -1,4 +1,5 @@
 import 'package:cabwala/home.dart';
+import 'package:cabwala/stats_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -182,7 +183,7 @@ ClipRRect BottomNavBar(homeSelected, manageSelected, statsSelected, context) {
         items: [
           BottomNavBarHome(homeSelected, context),
           BottomNavBarManage(manageSelected),
-          BottomNavBarStats(statsSelected),
+          BottomNavBarStats(statsSelected,context),
         ]),
   );
 }
@@ -211,12 +212,13 @@ BottomNavigationBarItem BottomNavBarManage(selected) {
   }
 }
 
-BottomNavigationBarItem BottomNavBarStats(selected) {
+BottomNavigationBarItem BottomNavBarStats(selected,context) {
   if (selected == 1) {
     return BottomNavigationBarItem(
         icon: SvgPicture.asset("images/stats1.svg"), label: 'profileSettings');
   } else {
     return BottomNavigationBarItem(
-        icon: SvgPicture.asset("images/stats0.svg"), label: 'profileSettings');
+        icon: InkWell(onTap: () =>
+                Navigator.pushNamed(context, StatsSearch.id),child: SvgPicture.asset("images/stats0.svg")), label: 'profileSettings');
   }
 }

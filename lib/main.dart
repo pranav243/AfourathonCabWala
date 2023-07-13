@@ -9,6 +9,7 @@ import 'package:cabwala/search_drivers.dart';
 import 'package:cabwala/select_cabs.dart';
 import 'package:cabwala/select_drivers.dart';
 import 'package:cabwala/stats.dart';
+import 'package:cabwala/stats_search.dart';
 import 'package:flutter/material.dart';
 import 'owner_home.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
               highlightColor: Colors.transparent,
               // primarySwatch: Colors.blue,
             ),
-            home: Login(),
+            home: Home(),
             // initialRoute: Home.id,
             routes: {
               Home.id: (context) => const Home(),
@@ -64,7 +65,9 @@ class MyApp extends StatelessWidget {
               Register.id: (context) => const Register(),
               SearchCabs.id: (context) => const SearchCabs(),
               SearchForCabs.id: (context) => const SearchForCabs(),
-              // Stats.id: (context) => const Stats(),
+              StatsSearch.id:(context)=> const StatsSearch(),
+              
+              // Stats.id: (context) =>  Stats(),
               // CabProfile.id: (context) => const CabProfile(),
               // FirebaseSearchScreen.id: (context) => const FirebaseSearchScreen(),
               

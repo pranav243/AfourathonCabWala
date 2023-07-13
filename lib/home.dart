@@ -67,10 +67,10 @@ class _HomeState extends State<Home> {
               child: Container(
                 margin: const EdgeInsets.only(top: 15),
                 padding: EdgeInsets.only(left: 20),
-                // height: ScreenUtil().setHeight(74),
-                // width: ScreenUtil().setWidth(312),
-                height: (74),
-                width: (312),
+                height: ScreenUtil().setHeight(74),
+                width: ScreenUtil().setWidth(312),
+                // height: (74),
+                // width: (312),
                 decoration: BoxDecoration(
                     color: const Color.fromRGBO(39, 149, 208, 0.27),
                     borderRadius: BorderRadius.circular(15)),
@@ -81,12 +81,12 @@ class _HomeState extends State<Home> {
                       SvgPicture.asset("images/ellipse.svg"),
                       SvgPicture.asset("images/driver.svg")
                     ]),
-                    const SizedBox(
-                      width: 15,
+                    SizedBox(
+                      width: ScreenUtil().setWidth(15),
                     ),
                     TitleWidget("Manage Drivers", "Add/Delete/Update Drivers"),
-                    const SizedBox(
-                      width: 50,
+                    SizedBox(
+                      width: ScreenUtil().setWidth(40),
                     ),
                     SvgPicture.asset("images/rightarrow.svg")
                   ],
@@ -100,10 +100,10 @@ class _HomeState extends State<Home> {
               onTap: () => Navigator.pushNamed(context, CabManager.id),
               child: Container(
                 padding: const EdgeInsets.only(left: 20),
-                // height: ScreenUtil().setHeight(74),
-                // width: ScreenUtil().setWidth(312),
-                height: (74),
-                width: (312),
+                height: ScreenUtil().setHeight(74),
+                width: ScreenUtil().setWidth(312),
+                // height: (74),
+                // width: (312),
                 decoration: BoxDecoration(
                     color: const Color.fromRGBO(39, 149, 208, 0.27),
                     borderRadius: BorderRadius.circular(15)),
@@ -114,12 +114,12 @@ class _HomeState extends State<Home> {
                       SvgPicture.asset("images/ellipse.svg"),
                       SvgPicture.asset("images/cab.svg")
                     ]),
-                    const SizedBox(
-                      width: 15,
+                    SizedBox(
+                      width: ScreenUtil().setWidth(15),
                     ),
                     TitleWidget("Manage Cabs", "Add/Delete/Update Cabs"),
-                    const SizedBox(
-                      width: 60,
+                    SizedBox(
+                      width: ScreenUtil().setWidth(50),
                     ),
                     SvgPicture.asset("images/rightarrow.svg")
                   ],
