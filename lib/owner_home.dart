@@ -84,7 +84,7 @@ class _OwnerHomeState extends State<OwnerHome> {
                       SvgPicture.asset("images/driver.svg")
                     ]),
                     const SizedBox(
-                      width: 20,
+                      width: 12,
                     ),
                     TitleWidget("Add Managers", "Authorize Manager Email IDs"),
                     const SizedBox(
@@ -132,7 +132,7 @@ class _OwnerHomeState extends State<OwnerHome> {
         ),
       ),
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(1, 0, context),
+      bottomNavigationBar: BottomNavBar(1, 0, 0, context),
       // )
     );
   }

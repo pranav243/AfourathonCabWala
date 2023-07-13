@@ -3,9 +3,12 @@ import 'package:cabwala/cab_profile.dart';
 import 'package:cabwala/list_drivers.dart';
 import 'package:cabwala/login.dart';
 import 'package:cabwala/manage_drivers.dart';
-import 'package:cabwala/search.dart';
+import 'package:cabwala/search_cabs.dart';
+import 'package:cabwala/searchForCabs.dart';
+import 'package:cabwala/search_drivers.dart';
 import 'package:cabwala/select_cabs.dart';
 import 'package:cabwala/select_drivers.dart';
+import 'package:cabwala/stats.dart';
 import 'package:flutter/material.dart';
 import 'owner_home.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,12 +46,12 @@ class MyApp extends StatelessWidget {
               highlightColor: Colors.transparent,
               // primarySwatch: Colors.blue,
             ),
-            home: Search(),
+            home: Login(),
             // initialRoute: Home.id,
             routes: {
               Home.id: (context) => const Home(),
               DriverManager.id: (context) => const DriverManager(),
-              AddDriver.id: (context) => const AddDriver(),
+              // AddDriver.id: (context) => const AddDriver(),
               CabManager.id: (context) => const CabManager(),
               AddCab.id: (context) => const AddCab(),
               ListCabs.id: (context) => const ListCabs(),
@@ -59,7 +62,9 @@ class MyApp extends StatelessWidget {
               AddManager.id: (context) => const AddManager(),
               OwnerLogin.id: (context) => const OwnerLogin(),
               Register.id: (context) => const Register(),
-              Search.id: (context) => const Search(),
+              SearchCabs.id: (context) => const SearchCabs(),
+              SearchForCabs.id: (context) => const SearchForCabs(),
+              // Stats.id: (context) => const Stats(),
               // CabProfile.id: (context) => const CabProfile(),
               // FirebaseSearchScreen.id: (context) => const FirebaseSearchScreen(),
               

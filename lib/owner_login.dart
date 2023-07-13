@@ -31,24 +31,73 @@ class _OwnerLoginState extends State<OwnerLogin> {
 
   return snapshot.size > 0;
 }
+  Future<void> invalidPassword() async {
+    showDialog(context: context,
+        builder: (BuildContext context){
+          return  AlertDialog(
+            title: const Text("Wrong Password !",
+            style: TextStyle(
+              color: Colors.red,),
+              ),
+            content: const Text("Password is incorrect."),
+            actions: [
+              ElevatedButton(
+                style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
+                 overlayColor: MaterialStateProperty.all<Color>(Colors.white),
+                // Add more style properties as needed
+                ),onPressed: (){
+                Navigator.of(context).pop();
+              }, child: const Text("OK")),
+            ],
+          );
+        }
+    );
+  }
+
+Future<void> notRegistered() async {
+    showDialog(context: context,
+        builder: (BuildContext context){
+          return  AlertDialog(
+            title: const Text("Not an Owner"),
+            content: const Text("This email ID is not a registered owner."),
+            actions: [
+              ElevatedButton(
+                style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
+                 overlayColor: MaterialStateProperty.all<Color>(Colors.white),
+                // Add more style properties as needed
+                ),onPressed: (){
+                Navigator.of(context).pop();
+              }, child: const Text("OK")),
+            ],
+          );
+        }
+    );
+  }
 
 void handleCheckValue() async {
     bool exists = await checkValueExists("Owners","Email ID",_email);
     if (exists) {
        _auth.signInWithEmailAndPassword(email: _email, password: _password).then((value) {
-        print("Created new account");
+        // print("Signed in");
         Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => const OwnerHome()));
-      },).onError((error, stackTrace) {print("ERROR ${error.toString()}");
+      },).onError((error, stackTrace) {
+        invalidPassword();
+        // print("ERROR ${error.toString()}");
       });
       // Value exists
-      print('You are not an owner');
+      // print('You are not an owner');
     } 
     else {
+      notRegistered();
       // Value does not exist
-      print('Value does not exist in the collection');
+      // print('Value does not exist in the collection');
     }
   }
 

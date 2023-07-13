@@ -1,9 +1,12 @@
 import 'package:cabwala/add_driver.dart';
 import 'package:cabwala/list_drivers.dart';
+import 'package:cabwala/search_drivers.dart';
 import 'package:cabwala/searchbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cabwala/widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class DriverManager extends StatefulWidget {
   static String id = 'drivermanager_screen';
@@ -15,6 +18,24 @@ class DriverManager extends StatefulWidget {
 }
 
 class _DriverManagerState extends State<DriverManager> {
+//   Future<String> getTotalDocuments() async {
+//   // Replace "yourCollection" with the actual name of your collection
+//   CollectionReference collectionRef =
+//       FirebaseFirestore.instance.collection('Drivers');
+
+//   QuerySnapshot querySnapshot = await collectionRef.get();
+//   int totalDocuments = querySnapshot.size;
+
+//   return "d$totalDocuments";
+// }
+// String driver='';
+//   @override
+//   void initState() {
+//     // TODO: implement initState
+//     super.initState();
+//     driver=getTotalDocuments();
+//   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +45,31 @@ class _DriverManagerState extends State<DriverManager> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             InkWell(
-              onTap: () => Navigator.pushNamed(context, AddDriver.id),
+              onTap: () {
+                // await getTotalDocuments();
+                // CollectionReference collectionRef =FirebaseFirestore.instance.collection('Drivers');
+                // CollectionReference collectionRef2 =FirebaseFirestore.instance.collection('Deleted Drivers');
+
+                // int? totalDocumentsCount ;
+                // int? totalDocumentsCount2 ;
+
+                // collectionRef.snapshots().listen((QuerySnapshot querySnapshot) {
+                //   totalDocumentsCount = querySnapshot.docs.length;
+                // });
+                // collectionRef2.snapshots().listen((QuerySnapshot querySnapshot2) {
+                //   totalDocumentsCount2 = querySnapshot2.docs.length;
+                // });
+
+                // String drivers="d000$totalDocumentsCount";
+                // Navigator.pushNamed(context, AddDriver.id);
+                Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddDriver(),));
+                
+              },
               child: Container(
-                margin: const EdgeInsets.only(top: 15),
+                margin: const EdgeInsets.only(top: 5),
                 padding: const EdgeInsets.only(left: 20),
                 // height: ScreenUtil().setHeight(74),
                 // width: ScreenUtil().setWidth(312),
@@ -43,7 +86,7 @@ class _DriverManagerState extends State<DriverManager> {
                       SvgPicture.asset("images/plus.svg")
                     ]),
                     const SizedBox(
-                      width: 20,
+                      width: 15,
                     ),
                     TitleWidget("Add Driver", "Register a new driver"),
                     const SizedBox(
@@ -55,7 +98,11 @@ class _DriverManagerState extends State<DriverManager> {
               ),
             ),
             InkWell(
-              onTap: () => Navigator.pushNamed(context, ListDrivers.id),
+              onTap: () { Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SearchDrivers()));
+                  },
               child: Container(
                 margin: const EdgeInsets.only(top: 15),
                 padding: const EdgeInsets.only(left: 20),
@@ -71,10 +118,10 @@ class _DriverManagerState extends State<DriverManager> {
                   children: [
                     Stack(alignment: Alignment.center, children: [
                       SvgPicture.asset("images/ellipse.svg"),
-                      SvgPicture.asset("images/plus.svg")
+                      SvgPicture.asset("images/list.svg")
                     ]),
                     const SizedBox(
-                      width: 20,
+                      width: 15,
                     ),
                     TitleWidget("Driver Details", "Search/Edit/Remove Drivers"),
                     const SizedBox(
@@ -93,7 +140,7 @@ class _DriverManagerState extends State<DriverManager> {
         ),
       ),
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(0, 0, context),
+      bottomNavigationBar: BottomNavBar(0, 0, 0, context),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:cabwala/add_cab.dart';
+import 'package:cabwala/search_cabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cabwala/widgets.dart';
@@ -26,7 +27,7 @@ class _CabManagerState extends State<CabManager> {
             InkWell(
               onTap: () => Navigator.pushNamed(context, AddCab.id),
               child: Container(
-                margin: const EdgeInsets.only(top: 15),
+                margin: const EdgeInsets.only(top: 5),
                 padding: const EdgeInsets.only(left: 20),
                 // height: ScreenUtil().setHeight(74),
                 // width: ScreenUtil().setWidth(312),
@@ -43,7 +44,7 @@ class _CabManagerState extends State<CabManager> {
                       SvgPicture.asset("images/plus.svg")
                     ]),
                     const SizedBox(
-                      width: 20,
+                      width: 15,
                     ),
                     TitleWidget("Add Cab", "Register a new cab"),
                     const SizedBox(
@@ -55,7 +56,7 @@ class _CabManagerState extends State<CabManager> {
               ),
             ),
             InkWell(
-              onTap: () => Navigator.pushNamed(context, ListCabs.id),
+              onTap: () => Navigator.pushNamed(context, SearchCabs.id),
               child: Container(
                 margin: const EdgeInsets.only(top: 15),
                 padding: const EdgeInsets.only(left: 20),
@@ -71,10 +72,10 @@ class _CabManagerState extends State<CabManager> {
                   children: [
                     Stack(alignment: Alignment.center, children: [
                       SvgPicture.asset("images/ellipse.svg"),
-                      SvgPicture.asset("images/plus.svg")
+                      SvgPicture.asset("images/list.svg")
                     ]),
                     const SizedBox(
-                      width: 20,
+                      width: 15,
                     ),
                     TitleWidget("Cab Details", "Search/Edit/Remove Cabs"),
                     const SizedBox(
@@ -93,7 +94,7 @@ class _CabManagerState extends State<CabManager> {
         ),
       ),
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(0, 0, context),
+      bottomNavigationBar: BottomNavBar(0, 0, 0,context),
     );
   }
 }

@@ -60,7 +60,7 @@ class _ManagersState extends State<Managers> {
         ),
       ),
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(0, 0, context),
+      bottomNavigationBar: BottomNavBar(0, 0, 0, context),
     );
   }
 }

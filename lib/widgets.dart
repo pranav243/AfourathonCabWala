@@ -44,6 +44,19 @@ Container InputTitle(title) {
     ),
   );
 }
+Container DetailTitle(title) {
+  return Container(
+    margin: const EdgeInsets.only(left: 10, bottom: 5),
+    child: Text(
+      title,
+      style: const TextStyle(
+          color: Color(0xFF09648C),
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          letterSpacing: 0.5),
+    ),
+  );
+}
 
 AppBar regularAppBar(BuildContext context) {
   return AppBar(
@@ -62,7 +75,7 @@ AppBar regularAppBar(BuildContext context) {
         padding:
             // EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
             const EdgeInsets.symmetric(horizontal: (20)),
-        child: SvgPicture.asset("images/profile.svg"),
+        // child: SvgPicture.asset("images/profile.svg"),
       )
     ],
   );
@@ -97,7 +110,68 @@ Column TitleWidget(title, description) {
   );
 }
 
-ClipRRect BottomNavBar(homeSelected, profilesetSelected, context) {
+// ClipRRect BottomNavBar(homeSelected, profilesetSelected, context) {
+//   return ClipRRect(
+//     borderRadius: const BorderRadius.only(
+//         topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+//     child: BottomNavigationBar(
+//         backgroundColor: const Color.fromRGBO(9, 100, 140, 1),
+//         showSelectedLabels: false,
+//         showUnselectedLabels: false,
+//         items: [
+//           BottomNavBarHome(homeSelected, context),
+//           BottomNavBarProfileSettings(profilesetSelected),
+//         ]),
+//   );
+// }
+
+// BottomNavigationBarItem BottomNavBarHome(selected, context) {
+//   if (selected == 1) {
+//     return BottomNavigationBarItem(
+//         icon: Stack(alignment: Alignment.topCenter, children: [
+//           Container(
+//             height: 36.72,
+//             width: 36.72,
+//             decoration: BoxDecoration(
+//                 borderRadius: BorderRadius.circular(18.36),
+//                 color: Color.fromRGBO(255, 255, 255, 0.47)),
+//           ),
+//           SvgPicture.asset("images/home.svg")
+//         ]),
+//         label: 'home');
+//   } else {
+//     return BottomNavigationBarItem(
+//         icon: InkWell(
+//             onTap: () =>
+//                 Navigator.popUntil(context, ModalRoute.withName(Home.id)),
+//             child: SvgPicture.asset("images/home.svg")),
+//         label: 'home');
+//   }
+// }
+
+// BottomNavigationBarItem BottomNavBarProfileSettings(selected) {
+//   if (selected == 1) {
+//     return BottomNavigationBarItem(
+//         icon: Stack(alignment: Alignment.topCenter, children: [
+//           Container(
+//             height: 36.72,
+//             width: 36.72,
+//             decoration: BoxDecoration(
+//                 borderRadius: BorderRadius.circular(18.36),
+//                 color: Color.fromRGBO(255, 255, 255, 0.47)),
+//           ),
+//           SvgPicture.asset("images/profileset.svg")
+//         ]),
+//         label: 'profileSettings');
+//   } else {
+//     return BottomNavigationBarItem(
+//         icon: SvgPicture.asset("images/profileset.svg"),
+//         label: 'profileSettings');
+//   }
+// }
+
+
+ClipRRect BottomNavBar(homeSelected, manageSelected, statsSelected, context) {
   return ClipRRect(
     borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(20), topRight: Radius.circular(20)),
@@ -107,7 +181,8 @@ ClipRRect BottomNavBar(homeSelected, profilesetSelected, context) {
         showUnselectedLabels: false,
         items: [
           BottomNavBarHome(homeSelected, context),
-          BottomNavBarProfileSettings(profilesetSelected),
+          BottomNavBarManage(manageSelected),
+          BottomNavBarStats(statsSelected),
         ]),
   );
 }
@@ -115,44 +190,33 @@ ClipRRect BottomNavBar(homeSelected, profilesetSelected, context) {
 BottomNavigationBarItem BottomNavBarHome(selected, context) {
   if (selected == 1) {
     return BottomNavigationBarItem(
-        icon: Stack(alignment: Alignment.topCenter, children: [
-          Container(
-            height: 36.72,
-            width: 36.72,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18.36),
-                color: Color.fromRGBO(255, 255, 255, 0.47)),
-          ),
-          SvgPicture.asset("images/home.svg")
-        ]),
-        label: 'home');
+        icon: SvgPicture.asset("images/home1.svg"), label: 'home');
   } else {
     return BottomNavigationBarItem(
         icon: InkWell(
             onTap: () =>
                 Navigator.popUntil(context, ModalRoute.withName(Home.id)),
-            child: SvgPicture.asset("images/home.svg")),
+            child: SvgPicture.asset("images/home0.svg")),
         label: 'home');
   }
 }
 
-BottomNavigationBarItem BottomNavBarProfileSettings(selected) {
+BottomNavigationBarItem BottomNavBarManage(selected) {
   if (selected == 1) {
     return BottomNavigationBarItem(
-        icon: Stack(alignment: Alignment.topCenter, children: [
-          Container(
-            height: 36.72,
-            width: 36.72,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18.36),
-                color: Color.fromRGBO(255, 255, 255, 0.47)),
-          ),
-          SvgPicture.asset("images/profileset.svg")
-        ]),
-        label: 'profileSettings');
+        icon: SvgPicture.asset("images/manage1.svg"), label: 'profileSettings');
   } else {
     return BottomNavigationBarItem(
-        icon: SvgPicture.asset("images/profileset.svg"),
-        label: 'profileSettings');
+        icon: SvgPicture.asset("images/manage0.svg"), label: 'profileSettings');
+  }
+}
+
+BottomNavigationBarItem BottomNavBarStats(selected) {
+  if (selected == 1) {
+    return BottomNavigationBarItem(
+        icon: SvgPicture.asset("images/stats1.svg"), label: 'profileSettings');
+  } else {
+    return BottomNavigationBarItem(
+        icon: SvgPicture.asset("images/stats0.svg"), label: 'profileSettings');
   }
 }

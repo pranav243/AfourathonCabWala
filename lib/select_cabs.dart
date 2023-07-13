@@ -97,7 +97,7 @@ class _SelectCabsState extends State<SelectCabs> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar(0, 0, context),
+      bottomNavigationBar: BottomNavBar(0, 0, 0, context),
     );
   }
 }

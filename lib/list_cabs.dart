@@ -114,7 +114,7 @@ class _ListCabsState extends State<ListCabs> {
         ),
       ),
       // extendBody: true,
-      bottomNavigationBar: BottomNavBar(0, 0, context),
+      bottomNavigationBar: BottomNavBar(0, 0, 0, context),
     );
   }
 }

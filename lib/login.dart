@@ -9,7 +9,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home.dart';
 
 
-
 class Login extends StatefulWidget {
   const Login({super.key});
   static String id = "login_screen";
@@ -35,24 +34,106 @@ class _LoginState extends State<Login> {
   return snapshot.size > 0;
 }
 
+Future<void> notRegistered() async {
+    showDialog(context: context,
+        builder: (BuildContext context){
+          return  AlertDialog(
+            title: const Text("Account does not exist"),
+            content: const Text("Create a new manager account."),
+            actions: [
+              ElevatedButton(
+                style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
+                 overlayColor: MaterialStateProperty.all<Color>(Colors.white),
+                // Add more style properties as needed
+                ),onPressed: (){
+                Navigator.of(context).pop();
+              }, child: const Text("OK")),
+            ],
+          );
+        }
+    );
+  }
+
+  Future<void> invalidPassword() async {
+    showDialog(context: context,
+        builder: (BuildContext context){
+          return  AlertDialog(
+            title: const Text("Wrong Password !",
+            style: TextStyle(
+              color: Colors.red,),
+              ),
+            content: const Text("Password is incorrect."),
+            actions: [
+              ElevatedButton(
+                style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
+                 overlayColor: MaterialStateProperty.all<Color>(Colors.white),
+                // Add more style properties as needed
+                ),onPressed: (){
+                Navigator.of(context).pop();
+              }, child: const Text("OK")),
+            ],
+          );
+        }
+    );
+  }
+
 void _login() async {
-  if (_formKey.currentState!.validate()) {
-    _formKey.currentState!.save();
-    try {
-      bool exists = await checkValueExists('Owner', 'Email ID', 'cabwala@gmail.com');
+  
+      bool exists = await checkValueExists('Managers', 'Email ID', _email);
       if(exists)
-      final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: _email,
-        password: _password,
-      );
+      {
+      invalidPassword();
+      }
+      // final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+      //   email: _email,
+      //   password: _password,
+      // );
       // Login successful, do something
-    } catch (e) {
-      print('Error: $e');
+      else 
+      {
+      notRegistered();
+      // print('Error: $e');
       print('Error: You are not registered as owner');
       // Login failed, show error message
-    }
-  }
+      }
+    
 }
+// void accountexists() async {
+  
+//       bool exists = await checkValueExists('Managers', 'Email ID', _email);
+//       if(exists)
+//       {
+//         QuerySnapshot snapshot = await FirebaseFirestore.instance
+//         .collection('your_collection')
+//         .where('field_name', isEqualTo: 'desired_field_value')
+//         .get();
+
+//         String documentId = snapshot.docs[0].id;
+
+//         DocumentReference documentRef = FirebaseFirestore.instance.collection('your_collection').doc(documentId);
+//         DocumentSnapshot snapshot1 = await documentRef.get();
+//         if (snapshot1.exists) {
+//         Map<String, dynamic> data = snapshot1.data();
+//         }
+//       }
+//       // final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+//       //   email: _email,
+//       //   password: _password,
+//       // );
+//       // Login successful, do something
+//       else 
+//       {
+//       notRegistered();
+//       // print('Error: $e');
+//       print('Error: You are not registered as owner');
+//       // Login failed, show error message
+//       }
+    
+// }
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +183,9 @@ void _login() async {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const Home()));
-              },).onError((error, stackTrace) {print("ERROR ${error.toString()}");
+              },).onError((error, stackTrace) {
+                _login();
+                print("ERROR ${error.toString()}");
             })
             },
             // onTap: _login,
@@ -144,10 +227,10 @@ void _login() async {
                           builder: (context) => const Register()));
                 },
                 child: Text(
-                  "Register Here",
+                  " Create new account",
                   style: TextStyle(
                       color: const Color(0xFF09648C),
-                      fontSize: ScreenUtil().setSp(12),
+                      fontSize: ScreenUtil().setSp(13),
                       fontWeight: FontWeight.w400,
                       letterSpacing: 0.5),
                 ),

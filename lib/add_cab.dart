@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'manage_cabs.dart';
+
 class AddCab extends StatefulWidget {
   static String id = "addCab_screen";
   const AddCab({super.key});
@@ -88,6 +90,17 @@ class _AddCabState extends State<AddCab> {
                   'Location': location,
                   'Type': type
                 });
+                Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const CabManager()));
+                ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Added a new cab.",
+                            style:TextStyle(color: Color(0xFF09648C),
+                            fontWeight: FontWeight.w500)),
+                            backgroundColor: Color(0xFFEAF7FF),
+                            elevation: 10));
               },
               child: Container(
                 alignment: Alignment.center,
@@ -109,7 +122,7 @@ class _AddCabState extends State<AddCab> {
         ),
       ),
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(0, 0, context),
+      // bottomNavigationBar: BottomNavBar(0, 0, context),
     );
   }
 

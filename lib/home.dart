@@ -54,7 +54,7 @@ class _HomeState extends State<Home> {
             padding:
                 // EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
                 const EdgeInsets.symmetric(horizontal: (20)),
-            child: SvgPicture.asset("images/profile.svg"),
+            child: SvgPicture.asset("images/logout.svg"),
           )
         ],
       ),
@@ -82,7 +82,7 @@ class _HomeState extends State<Home> {
                       SvgPicture.asset("images/driver.svg")
                     ]),
                     const SizedBox(
-                      width: 20,
+                      width: 15,
                     ),
                     TitleWidget("Manage Drivers", "Add/Delete/Update Drivers"),
                     const SizedBox(
@@ -115,7 +115,7 @@ class _HomeState extends State<Home> {
                       SvgPicture.asset("images/cab.svg")
                     ]),
                     const SizedBox(
-                      width: 20,
+                      width: 15,
                     ),
                     TitleWidget("Manage Cabs", "Add/Delete/Update Cabs"),
                     const SizedBox(
@@ -130,7 +130,7 @@ class _HomeState extends State<Home> {
         ),
       ),
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(1, 0, context),
+      bottomNavigationBar: BottomNavBar(1, 0, 0, context),
       // )
     );
   }

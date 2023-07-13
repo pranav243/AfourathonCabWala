@@ -39,6 +39,29 @@ class _RegisterState extends State<Register> {
     }
   }
 
+Future<void> notAuthorized() async {
+    showDialog(context: context,
+        builder: (BuildContext context){
+          return  AlertDialog(
+            title: const Text("Unauthorized Email ID !"),
+            content: const Text("You are not authorized to be a manager."),
+            actions: [
+              ElevatedButton(
+                style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
+                 overlayColor: MaterialStateProperty.all<Color>(Colors.white),
+                // Add more style properties as needed
+                ),onPressed: (){
+                Navigator.of(context).pop();
+              }, child: const Text("OK")),
+            ],
+          );
+        }
+    );
+  }
+
+  
   //   Future<void> addField() async {
   //   final DocumentReference documentRef = FirebaseFirestore.instance
   //       .collection(collectionPath)
@@ -80,12 +103,23 @@ class _RegisterState extends State<Register> {
             context,
             MaterialPageRoute(
                 builder: (context) => const Home()));
-      },).onError((error, stackTrace) {print("ERROR ${error.toString()}");
+                ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Welcome to CabWala.',
+                            style:TextStyle(color: Color(0xFF09648C),
+                            fontWeight: FontWeight.w500)),
+                            backgroundColor: Color(0xFFEAF7FF),
+                            elevation: 10));
+      },).onError((error, stackTrace) {
+        // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Welcome to CabWala'),));
+        notAuthorized();
+        print("ERROR ${error.toString()}");
       });
       // Value exists
       print('You are not a manager');
     } 
     else {
+      notAuthorized();
       // Value does not exist
       print('Value does not exist in the collection');
     }
@@ -99,6 +133,9 @@ class _RegisterState extends State<Register> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // SizedBox(
+          //   height: 30,
+          // ),
           Row(
             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -208,7 +245,7 @@ class _RegisterState extends State<Register> {
           ),
         ),
         const SizedBox(
-          height: 20,
+          height: 10,
         )
       ],
     );
