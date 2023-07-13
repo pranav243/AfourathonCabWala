@@ -79,16 +79,14 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   # fonts:
+  fonts:
     - family: Inter
       fonts:
         - asset: fonts/Inter-SemiBold.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
     - family: Poppins
       fonts:
-        - asset: fonts/
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+        - asset: fonts/Poppins-Light.ttf
+        - asset: fonts/Poppins-Medium.ttf  
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

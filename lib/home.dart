@@ -1,3 +1,4 @@
+import 'package:cabwala/login.dart';
 import 'package:cabwala/manage_drivers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,12 +32,20 @@ class _HomeState extends State<Home> {
             width: ScreenUtil().setWidth(120),
             // height: (36),
             // width: (120),
-            child:  Text('CabWala',
-                style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                    fontSize: ScreenUtil().setSp(27)))),
+            child:  Row(
+              children: [Text('Cab',
+                  style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                      fontSize: ScreenUtil().setSp(27))),
+                      Text('Wala',
+                  style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                      color: Color.fromRGBO(9, 100, 140, 1),
+                      fontSize: ScreenUtil().setSp(27)))],
+            )),
                     // fontSize: (30)))),
 
         actions: [
@@ -53,7 +62,7 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             InkWell(
-              onTap: () => Navigator.pushNamed(context, DriverManager.id),
+              onTap: () => Navigator.pushNamed(context, Login.id),
               child: Container(
                 margin: const EdgeInsets.only(top: 15),
                 padding: EdgeInsets.only(left: 20),
