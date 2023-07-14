@@ -1,3 +1,4 @@
+import 'package:cabwala/link_driver.dart';
 import 'package:cabwala/manage_drivers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -34,13 +35,10 @@ class _LinkHomeState extends State<LinkHome> {
 
   _onSearchChanged() {
     print(_searchController.text);
-    if(page==0)
-    {
-    searchResultListDrivers();
-    }
-    else
-    {
-    searchResultListCabs();
+    if (page == 0) {
+      searchResultListDrivers();
+    } else {
+      searchResultListCabs();
     }
   }
 
@@ -66,6 +64,7 @@ class _LinkHomeState extends State<LinkHome> {
       _resultList = showResults;
     });
   }
+
   searchResultListCabs() {
     var showResults2 = [];
     if (_searchController.text != "") {
@@ -102,6 +101,7 @@ class _LinkHomeState extends State<LinkHome> {
     });
     searchResultListDrivers();
   }
+
   getCollectionStream2() async {
     var data = await FirebaseFirestore.instance
         .collection('Cabs')
@@ -143,6 +143,7 @@ class _LinkHomeState extends State<LinkHome> {
   Widget build(BuildContext context) {
     if (page == 0) {
       return Scaffold(
+        // appBar: regularAppBar(context),
         appBar: AppBar(
           centerTitle: false,
           toolbarHeight: ScreenUtil().setHeight(60),
@@ -269,72 +270,101 @@ class _LinkHomeState extends State<LinkHome> {
                       padding: const EdgeInsets.only(
                         bottom: 8.0,
                       ),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        width: 312,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            color: _resultList[index]['Linked']
-                                ? const Color.fromRGBO(36, 204, 42, 0.27)
-                                : const Color.fromRGBO(39, 149, 208, 0.27),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  _resultList[index]['Name'],
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: Color.fromRGBO(9, 100, 140, 1),
-                                      fontSize: 16,
-                                      letterSpacing: 0.5),
-                                ),
-                                Text(
-                                _resultList[index]['Hometown'],
-                                style: const TextStyle(
-                                    color: Color(0xFF333434),
-                                    fontSize: 11,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w400,
-                                    // height: 18,
-                                    letterSpacing: 0.50,),
-                              )
-                              ],
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  height: 16,
-                                  width: 80,
-                                  decoration: BoxDecoration(
-                                      color: const Color.fromRGBO(
-                                          235, 248, 255, 1),
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Text(
-                                    _resultList[index]['Driver ID'],
+                      child: InkWell(
+                        onTap: () {
+                          // if (_resultList[index]['Linked']) {
+                          //   Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: (context) => LinkDriver(
+                          //                 driver: _resultList[index],
+                          //               )));
+                          // } else {
+                          //   Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: (context) => LinkDriver(
+                          //                 driver: _resultList[index],
+                          //               )));
+                          // }
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LinkDriver(
+                                        driver: _resultList[index],
+                                      )));
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          width: 312,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              color: _resultList[index]['Linked']
+                                  ? const Color.fromRGBO(36, 204, 42, 0.27)
+                                  : const Color.fromRGBO(39, 149, 208, 0.27),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    _resultList[index]['Name'],
                                     style: const TextStyle(
-                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
                                         color: Color.fromRGBO(9, 100, 140, 1),
-                                        fontWeight: FontWeight.w500),
+                                        fontSize: 16,
+                                        letterSpacing: 0.5),
                                   ),
-                                ),
-                                Text(
-                                  _resultList[index]['Contact'],
-                                  style: const TextStyle(
-                                      fontSize: 9,
+                                  Text(
+                                    _resultList[index]['Hometown'],
+                                    style: const TextStyle(
+                                      color: Color(0xFF333434),
+                                      fontSize: 11,
+                                      fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w400,
-                                      letterSpacing: 0.5),
-                                )
-                              ],
-                            ),
-                          ],
+                                      // height: 18,
+                                      letterSpacing: 0.50,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.center,
+                                    height: 16,
+                                    width: 80,
+                                    decoration: BoxDecoration(
+                                        color: const Color.fromRGBO(
+                                            235, 248, 255, 1),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Text(
+                                      _resultList[index]['Driver ID'],
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          color: Color.fromRGBO(9, 100, 140, 1),
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ),
+                                  Text(
+                                    _resultList[index]['Contact'],
+                                    style: const TextStyle(
+                                        fontSize: 9,
+                                        fontWeight: FontWeight.w400,
+                                        letterSpacing: 0.5),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
@@ -508,7 +538,8 @@ class _LinkHomeState extends State<LinkHome> {
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w400,
                                     // height: 18,
-                                    letterSpacing: 0.50,),
+                                    letterSpacing: 0.50,
+                                  ),
                                 )
                               ],
                             ),

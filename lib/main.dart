@@ -1,3 +1,4 @@
+import 'package:cabwala/link_driver.dart';
 import 'package:cabwala/link_home.dart';
 import 'package:cabwala/list_drivers.dart';
 import 'package:cabwala/login.dart';
@@ -61,13 +62,13 @@ class MyApp extends StatelessWidget {
               Register.id: (context) => const Register(),
               SearchCabs.id: (context) => const SearchCabs(),
               SearchForCabs.id: (context) => const SearchForCabs(),
-              StatsSearch.id:(context)=> const StatsSearch(),
-              LinkHome.id:(context)=> const LinkHome(),
-              
-              Stats.id: (context) =>  const Stats(),
+              StatsSearch.id: (context) => const StatsSearch(),
+              LinkHome.id: (context) => const LinkHome(),
+              LinkDriver.id: (context) => LinkDriver(),
+
+              Stats.id: (context) => const Stats(),
               // CabProfile.id: (context) => const CabProfile(),
               // FirebaseSearchScreen.id: (context) => const FirebaseSearchScreen(),
-              
             },
             // home: const MyHomePage(title: 'Flutter Demo Home Page'),
           );
