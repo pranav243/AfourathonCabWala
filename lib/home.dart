@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
                     style: TextStyle(
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w600,
-                        color: Color.fromRGBO(9, 100, 140, 1),
+                        color: const Color.fromRGBO(9, 100, 140, 1),
                         fontSize: ScreenUtil().setSp(27)))
               ],
             )),
@@ -66,7 +66,7 @@ class _HomeState extends State<Home> {
               onTap: () => Navigator.pushNamed(context, DriverManager.id),
               child: Container(
                 margin: const EdgeInsets.only(top: 15),
-                padding: EdgeInsets.only(left: 20),
+                padding: const EdgeInsets.only(left: 20),
                 height: ScreenUtil().setHeight(74),
                 width: ScreenUtil().setWidth(312),
                 // height: (74),

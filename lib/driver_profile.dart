@@ -1,4 +1,3 @@
-import 'package:cabwala/search_cabs.dart';
 import 'package:cabwala/search_drivers.dart';
 import 'package:cabwala/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -35,7 +34,7 @@ class _DriverProfileState extends State<DriverProfile> {
             actions: [
               ElevatedButton(
                 style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFE86666)), // Set the background color
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFE86666)), // Set the background color
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
                  overlayColor: MaterialStateProperty.all<Color>(Colors.white),
                 // Add more style properties as needed
@@ -59,7 +58,7 @@ class _DriverProfileState extends State<DriverProfile> {
               child: const Text("Delete")),
               ElevatedButton(
                 style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
                  overlayColor: MaterialStateProperty.all<Color>(Colors.white),
                 // Add more style properties as needed
@@ -80,7 +79,7 @@ class _DriverProfileState extends State<DriverProfile> {
             actions: [
               ElevatedButton(
                 style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
                  overlayColor: MaterialStateProperty.all<Color>(Colors.white),
 
@@ -103,7 +102,7 @@ class _DriverProfileState extends State<DriverProfile> {
               }, child: const Text("Yes")),
               ElevatedButton(
                 style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
                  overlayColor: MaterialStateProperty.all<Color>(Colors.white),
                 // Add more style properties as needed
@@ -162,7 +161,7 @@ class _DriverProfileState extends State<DriverProfile> {
             ),
             // FixedBox("DriverID | $ic2","Driver ID", TextInputType.name),
             Text("DriverID : $ic2",
-            style: TextStyle(color:Color(0xFF09648C) ),),
+            style: const TextStyle(color:Color(0xFF09648C) ),),
             const SizedBox(
               height: 16,
             ),
@@ -229,7 +228,7 @@ class _DriverProfileState extends State<DriverProfile> {
                 width: 307.91,
                 height: 46.79,
                 decoration: BoxDecoration(
-                    color: Color(0xFF09648C),
+                    color: const Color(0xFF09648C),
                     borderRadius: BorderRadius.circular(20)),
                 child: const Text(
                   "Save Changes",
@@ -253,7 +252,7 @@ class _DriverProfileState extends State<DriverProfile> {
                 width: 307.91,
                 height: 46.79,
                 decoration: BoxDecoration(
-                    color: Color(0xFFE86666),
+                    color: const Color(0xFFE86666),
                     borderRadius: BorderRadius.circular(20)),
                 child: const Text(
                   "Remove Driver",

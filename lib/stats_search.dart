@@ -1,6 +1,4 @@
 import 'package:cabwala/stats.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import "package:flutter_screenutil/flutter_screenutil.dart";
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,6 +15,7 @@ class StatsSearch extends StatefulWidget {
 class _StatsSearchState extends State<StatsSearch> {
   @override
   dynamic type;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -44,7 +43,7 @@ class _StatsSearchState extends State<StatsSearch> {
                     style: TextStyle(
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w600,
-                        color: Color.fromRGBO(9, 100, 140, 1),
+                        color: const Color.fromRGBO(9, 100, 140, 1),
                         fontSize: ScreenUtil().setSp(25)))
               ],
             )),
@@ -98,7 +97,6 @@ class _StatsSearchState extends State<StatsSearch> {
               onChanged: (String? value) {
                 type = value!;
               },
-              
               style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   color: Color.fromRGBO(51, 52, 52, 1)),
@@ -112,41 +110,54 @@ class _StatsSearchState extends State<StatsSearch> {
             ),
           ),
           Stack(alignment: Alignment.center, children: [
-                            Positioned(
-                                child: Image.asset(
-                                    "images/maps-stats.png")),
-                            InkWell(
-                              child: Container(
-                                  width: 180,
-                                  height: 47,
-                                  decoration: ShapeDecoration(
-                                    color: const Color(0xFFEAF7FF),
-                                    shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                        width: 2.50,
-                                        strokeAlign: BorderSide.strokeAlignCenter,
-                                        color: Color(0xFF09648C),
-                                      ),
-                                  borderRadius: BorderRadius.circular(35),
-                                 ),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                            'Go to Statistics',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Color(0xFF09648C),
-                                              fontSize: ScreenUtil().setSp(16),
-                                              fontFamily: 'Poppins',
-                                              fontWeight: FontWeight.w600,
-                                              
-                                            ),
-                                          ),
-                                  ),
-                                      ),
-                                      onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>Stats(city: type,))),
-                            )
-                          ]),
+            Positioned(child: Image.asset("images/maps-stats.png")),
+            InkWell(
+              onTap: (){ 
+                if(type==null)
+                {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Please choose a city.",
+                            style:TextStyle(color: Color(0xFF09648C),
+                            fontWeight: FontWeight.w500)),
+                    backgroundColor: Color(0xFFEAF7FF),
+                    elevation: 10)); 
+                }
+                else
+                {
+                  Navigator.pushNamed(context, Stats.id,
+                      arguments: {'city': type!.toString()});
+                }
+              },
+              child: Container(
+                width: ScreenUtil().setWidth(180),
+                height: ScreenUtil().setHeight(47),
+                decoration: ShapeDecoration(
+                  color: const Color(0xFFEAF7FF),
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(
+                      width: 2.50,
+                      strokeAlign: BorderSide.strokeAlignCenter,
+                      color: Color(0xFF09648C),
+                    ),
+                    borderRadius: BorderRadius.circular(35),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    'Go to Statistics',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: const Color(0xFF09648C),
+                      fontSize: ScreenUtil().setSp(16),
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ]),
         ],
       )),
       extendBody: true,

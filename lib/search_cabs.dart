@@ -1,6 +1,5 @@
 import 'package:cabwala/cab_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cabwala/widgets.dart';
@@ -126,7 +125,7 @@ Widget build(BuildContext context) {
               height: 34,
               alignment: Alignment.center,
               child: CupertinoSearchTextField(
-                prefixInsets: EdgeInsets.fromLTRB(20, 5, 5, 5),
+                prefixInsets: const EdgeInsets.fromLTRB(20, 5, 5, 5),
                 prefixIcon: const Icon(
                   CupertinoIcons.search,
                   color: Colors.black54,
@@ -147,7 +146,7 @@ Widget build(BuildContext context) {
                 style: const TextStyle(),
               ),
             ),
-            SizedBox(
+            const SizedBox(
             height: 16,
           ),
           const Text(
@@ -270,7 +269,7 @@ Widget build(BuildContext context) {
                                     color: Color(0xFF333434),
                                     fontSize: 11,
                                     fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w400,
                                     // height: 18,
                                     letterSpacing: 0.50,),
                               )

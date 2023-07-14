@@ -1,12 +1,9 @@
 import 'package:cabwala/add_driver.dart';
-import 'package:cabwala/list_drivers.dart';
 import 'package:cabwala/search_drivers.dart';
-import 'package:cabwala/searchbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cabwala/widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DriverManager extends StatefulWidget {
   static String id = 'drivermanager_screen';
@@ -71,10 +68,10 @@ class _DriverManagerState extends State<DriverManager> {
               child: Container(
                 margin: const EdgeInsets.only(top: 5),
                 padding: const EdgeInsets.only(left: 20),
-                // height: ScreenUtil().setHeight(74),
-                // width: ScreenUtil().setWidth(312),
-                height: (74),
-                width: (312),
+                height: ScreenUtil().setHeight(74),
+                width: ScreenUtil().setWidth(312),
+                // height: (74),
+                // width: (312),
                 decoration: BoxDecoration(
                     color: const Color.fromRGBO(39, 149, 208, 0.27),
                     borderRadius: BorderRadius.circular(15)),
@@ -98,18 +95,19 @@ class _DriverManagerState extends State<DriverManager> {
               ),
             ),
             InkWell(
-              onTap: () { Navigator.push(
+              onTap: () {
+                Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const SearchDrivers()));
-                  },
+              },
               child: Container(
                 margin: const EdgeInsets.only(top: 15),
                 padding: const EdgeInsets.only(left: 20),
-                // height: ScreenUtil().setHeight(74),
-                // width: ScreenUtil().setWidth(312),
-                height: (74),
-                width: (312),
+                height: ScreenUtil().setHeight(74),
+                width: ScreenUtil().setWidth(312),
+                // height: (74),
+                // width: (312),
                 decoration: BoxDecoration(
                     color: const Color.fromRGBO(39, 149, 208, 0.27),
                     borderRadius: BorderRadius.circular(15)),

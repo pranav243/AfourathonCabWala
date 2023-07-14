@@ -1,13 +1,9 @@
-import 'package:cabwala/add_driver.dart';
-import 'package:cabwala/cab_profile.dart';
+import 'package:cabwala/link_home.dart';
 import 'package:cabwala/list_drivers.dart';
 import 'package:cabwala/login.dart';
 import 'package:cabwala/manage_drivers.dart';
 import 'package:cabwala/search_cabs.dart';
 import 'package:cabwala/searchForCabs.dart';
-import 'package:cabwala/search_drivers.dart';
-import 'package:cabwala/select_cabs.dart';
-import 'package:cabwala/select_drivers.dart';
 import 'package:cabwala/stats.dart';
 import 'package:cabwala/stats_search.dart';
 import 'package:flutter/material.dart';
@@ -66,8 +62,9 @@ class MyApp extends StatelessWidget {
               SearchCabs.id: (context) => const SearchCabs(),
               SearchForCabs.id: (context) => const SearchForCabs(),
               StatsSearch.id:(context)=> const StatsSearch(),
+              LinkHome.id:(context)=> const LinkHome(),
               
-              // Stats.id: (context) =>  Stats(),
+              Stats.id: (context) =>  const Stats(),
               // CabProfile.id: (context) => const CabProfile(),
               // FirebaseSearchScreen.id: (context) => const FirebaseSearchScreen(),
               

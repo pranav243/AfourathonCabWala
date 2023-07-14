@@ -15,6 +15,7 @@ class _ListCabsState extends State<ListCabs> {
   final _firestore = FirebaseFirestore.instance;
   List<Widget> cabsWidget = [];
 
+  @override
   void initState() {
     getMessagesStream();
   }
@@ -26,7 +27,7 @@ class _ListCabsState extends State<ListCabs> {
         // cabsFirebase.add(cab.data());
         Widget widget = Container(
           margin: const EdgeInsets.only(top: 15),
-          padding: EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 20),
           // height: ScreenUtil().setHeight(74),
           // width: ScreenUtil().setWidth(312),
           height: (74),
@@ -106,7 +107,7 @@ class _ListCabsState extends State<ListCabs> {
 
             Expanded(
               child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 children: cabsWidget,
               ),
             )

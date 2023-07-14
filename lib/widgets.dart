@@ -1,4 +1,5 @@
 import 'package:cabwala/home.dart';
+import 'package:cabwala/stats_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -67,14 +68,14 @@ AppBar regularAppBar(BuildContext context) {
     backgroundColor: Colors.white,
     leadingWidth: 0,
     title: InkWell(
-        onTap: () => Navigator.pop(context),
+        onTap: ()=> Navigator.of(context).popUntil((route) => route.isFirst),
         child: SvgPicture.asset("images/backbutton.svg")),
 
-    actions: [
+    actions: const [
       Padding(
         padding:
             // EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
-            const EdgeInsets.symmetric(horizontal: (20)),
+            EdgeInsets.symmetric(horizontal: (20)),
         // child: SvgPicture.asset("images/profile.svg"),
       )
     ],
@@ -170,7 +171,6 @@ Column TitleWidget(title, description) {
 //   }
 // }
 
-
 ClipRRect BottomNavBar(homeSelected, manageSelected, statsSelected, context) {
   return ClipRRect(
     borderRadius: const BorderRadius.only(
@@ -182,7 +182,7 @@ ClipRRect BottomNavBar(homeSelected, manageSelected, statsSelected, context) {
         items: [
           BottomNavBarHome(homeSelected, context),
           BottomNavBarManage(manageSelected),
-          BottomNavBarStats(statsSelected),
+          BottomNavBarStats(statsSelected,context),
         ]),
   );
 }
@@ -195,7 +195,7 @@ BottomNavigationBarItem BottomNavBarHome(selected, context) {
     return BottomNavigationBarItem(
         icon: InkWell(
             onTap: () =>
-                Navigator.popUntil(context, ModalRoute.withName(Home.id)),
+                Navigator.of(context).popUntil((route) => route.isFirst),
             child: SvgPicture.asset("images/home0.svg")),
         label: 'home');
   }
@@ -211,12 +211,13 @@ BottomNavigationBarItem BottomNavBarManage(selected) {
   }
 }
 
-BottomNavigationBarItem BottomNavBarStats(selected) {
+BottomNavigationBarItem BottomNavBarStats(selected,context) {
   if (selected == 1) {
     return BottomNavigationBarItem(
         icon: SvgPicture.asset("images/stats1.svg"), label: 'profileSettings');
   } else {
     return BottomNavigationBarItem(
-        icon: SvgPicture.asset("images/stats0.svg"), label: 'profileSettings');
+        icon: InkWell(onTap: () =>
+                Navigator.pushNamed(context, StatsSearch.id),child: SvgPicture.asset("images/stats0.svg")), label: 'profileSettings');
   }
 }

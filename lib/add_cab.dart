@@ -2,7 +2,7 @@ import 'package:cabwala/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'manage_cabs.dart';
 
 class AddCab extends StatefulWidget {
@@ -40,13 +40,65 @@ class _AddCabState extends State<AddCab> {
             InputBox("Registration Number", TextInputType.name),
             InputBox("Model", TextInputType.name),
             InputBox("Colour", TextInputType.name),
-            InputBox("Location", TextInputType.name),
+            Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
+            InputTitle("Location"),
+            SizedBox(
+              height: ScreenUtil().setHeight(60),
+              width: ScreenUtil().setWidth(308),
+              child: DropdownButtonFormField(
+                isDense: false,
+                hint: const Text("Choose City"),
+                icon: const Icon(Icons.keyboard_arrow_down),
+                items: const [
+                  DropdownMenuItem(
+                    value: 'Bangalore',
+                    child: Text("Bangalore, Karnataka"),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Chennai',
+                    child: Text("Chennai, Tamil Nadu"),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Hyderabad',
+                    child: Text("Hyderabad, Telangana"),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Mumbai',
+                    child: Text("Mumbai, Maharashtra"),
+                  ),
+                  DropdownMenuItem(
+                    value: 'New Delhi',
+                    child: Text("New Delhi, Delhi"),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Pune',
+                    child: Text("Pune, Maharashtra"),
+                  )
+                ],
+                onChanged: (String? value) {
+                  location = value!;
+                },
+                style: const TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: Color.fromRGBO(51, 52, 52, 1)),
+                decoration: const InputDecoration(
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 1, color: Color.fromRGBO(196, 196, 196, 1)),
+                        borderRadius: BorderRadius.all(Radius.circular(10)))),
+              ),
+            ),const SizedBox(
+                height: 20,
+              )],),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               InputTitle("Cab Type"),
               SizedBox(
-                  height: 46.79,
-                  width: 307.91,
+              height: ScreenUtil().setHeight(60),
+              width: ScreenUtil().setWidth(308),
                   child: DropdownButtonFormField(
+                    hint: Text("Choose Cab Type"),
                     icon: const Icon(Icons.keyboard_arrow_down),
                     items: const [
                       DropdownMenuItem(
@@ -102,8 +154,8 @@ class _AddCabState extends State<AddCab> {
                             content: Text("Added a new cab.",
                             style:TextStyle(color: Color(0xFF09648C),
                             fontWeight: FontWeight.w500)),
-                            backgroundColor: Color(0xFFEAF7FF),
-                            elevation: 10));
+                    backgroundColor: Color(0xFFEAF7FF),
+                    elevation: 10));
               },
               child: Container(
                 alignment: Alignment.center,
@@ -135,8 +187,8 @@ class _AddCabState extends State<AddCab> {
       children: [
         InputTitle(title),
         SizedBox(
-          height: 46.79,
-          width: 307.91,
+                        height: ScreenUtil().setHeight(60),
+              width: ScreenUtil().setWidth(308),
           child: TextField(
             onChanged: (value) {
               if (title == 'Registration Number') {

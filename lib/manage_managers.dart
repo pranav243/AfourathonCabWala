@@ -1,6 +1,5 @@
 import 'package:cabwala/add_manager.dart';
 // import 'package:cabwala/list_managers.dart';
-import 'package:cabwala/searchbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cabwala/widgets.dart';

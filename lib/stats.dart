@@ -1,9 +1,5 @@
 import 'dart:async';
-import 'dart:io';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,14 +7,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'widgets.dart';
 
 class Stats extends StatefulWidget {
-  Stats({super.key, required this.city});
-  dynamic city;
+  const Stats({super.key});
   static String id = "stats_screen";
   @override
   State<Stats> createState() => _StatsState();
 }
 
 class _StatsState extends State<Stats> {
+  dynamic city;
   dynamic suv;
   dynamic sedan;
   dynamic mini;
@@ -42,32 +38,67 @@ class _StatsState extends State<Stats> {
   final _firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
+    dynamic city=0;
+  dynamic suv=0;
+  dynamic sedan=0;
+  dynamic mini=0;
+  dynamic active=0;
+  dynamic cabs=0;
+  dynamic drivers=0;
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+    city = arguments["city"];
     Stream<DocumentSnapshot> documentStream =
-        getDocumentStream(collectionName, widget.city);
+        getDocumentStream(collectionName, city);
     StreamSubscription<DocumentSnapshot> subscription =
         documentStream.listen((DocumentSnapshot snapshot) {
       if (snapshot.exists) {
         Map<String, dynamic> fields = snapshot.data() as Map<String, dynamic>;
         setState(() {
-                  cabs = fields['Cabs'];
-        drivers = fields['Drivers'];
-        mini = fields["Mini"];
-        sedan = fields["Sedan"];
-        suv = fields["SUV"];
-        active = fields["Active Rides"];
+          cabs = fields['Cabs'];
+          drivers = fields['Drivers'];
+          mini = fields["Mini"];
+          sedan = fields["Sedan"];
+          suv = fields["SUV"];
+          active = fields["Active Rides"];
         });
-
-        print(cabs);
-      } else {
-        // Document does not exist
       }
     });
-    // subscription.cancel();
     return Scaffold(
-      appBar: regularAppBar(context),
+      appBar: AppBar(
+        centerTitle: false,
+        toolbarHeight: ScreenUtil().setHeight(60),
+        // toolbarHeight: (60),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        leadingWidth: 0,
+        title: InkWell(
+          child: Container(
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+              height: ScreenUtil().setHeight(36),
+              width: ScreenUtil().setWidth(120),
+              child: SvgPicture.asset("images/backbutton.svg")),
+              onTap: ()=> Navigator.of(context).popUntil((route) => route.isFirst),
+        ),
+        // fontSize: (30)))),
+
+        actions: [
+          Padding(
+            padding:
+                // EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
+                const EdgeInsets.symmetric(horizontal: (20)),
+            child: Image.asset("images/location.png",
+            width:24,
+            height:30),
+          )
+        ],
+      ),
       body: Center(
         child:
             Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              Row(mainAxisAlignment: MainAxisAlignment.center,
+              children: [SizedBox(height:ScreenUtil().setHeight(44),width:ScreenUtil().setWidth(29),child: Image.asset("images/location.png")),Text(city, style:TextStyle(fontFamily: 'Poppins', fontSize: ScreenUtil().setSp(26),fontWeight: FontWeight.w500,color: Color(0xFF09648C)))],),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -239,8 +270,8 @@ class _StatsState extends State<Stats> {
           ),
         ]),
       ),
-      extendBody: true,
-      // bottomNavigationBar: BottomNavBar(0, 0, 1, context),
+      // extendBody: true,
+      bottomNavigationBar: BottomNavBar(0, 0, 1, context),
     );
   }
 }

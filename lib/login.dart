@@ -43,7 +43,7 @@ Future<void> notRegistered() async {
             actions: [
               ElevatedButton(
                 style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
                  overlayColor: MaterialStateProperty.all<Color>(Colors.white),
                 // Add more style properties as needed
@@ -68,7 +68,7 @@ Future<void> notRegistered() async {
             actions: [
               ElevatedButton(
                 style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF09648C)), // Set the background color
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
                  overlayColor: MaterialStateProperty.all<Color>(Colors.white),
                 // Add more style properties as needed
