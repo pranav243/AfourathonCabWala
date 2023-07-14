@@ -137,12 +137,12 @@ Widget build(BuildContext context) {
                   borderRadius: BorderRadius.circular(20),
                   color: const Color.fromRGBO(235, 248, 255, 1),
                 ),
-                placeholder: "Search for Drivers",
+                placeholder: "Search for Cabs",
                 placeholderStyle: const TextStyle(
                     letterSpacing: 0.5,
-                    fontSize: 11,
+                    fontSize: 14,
                     fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w300,
                     color: Color.fromRGBO(96, 96, 96, 0.75)),
                 style: const TextStyle(),
               ),
@@ -150,7 +150,7 @@ Widget build(BuildContext context) {
             SizedBox(
             height: 16,
           ),
-          Text(
+          const Text(
             'Choose cab to edit details',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -205,26 +205,26 @@ Widget build(BuildContext context) {
                     //   tileColor: const Color.fromRGBO(39, 149, 208, 0.27),
                     //   // onTap: (){_sendDocIdToCabProfile(_resultList[index]);}
                     // )
-                    child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CabProfile(
-                            docId: _resultList[index].id,
-                            regnumber: _resultList[index]['RegNumber'],
-                            model: _resultList[index]['Model'],
-                            colour: _resultList[index]['Colour'],
-                            location: _resultList[index]['Location'],
-                            type: _resultList[index]['Type'],
-                          ),
-                        ),
-                      );
-                      print("Container tapped!");
-                    },
+                    // child: GestureDetector(
+                    // onTap: () {
+                    //   Navigator.pushReplacement(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => CabProfile(
+                    //         docId: _resultList[index].id,
+                    //         regnumber: _resultList[index]['RegNumber'],
+                    //         model: _resultList[index]['Model'],
+                    //         colour: _resultList[index]['Colour'],
+                    //         location: _resultList[index]['Location'],
+                    //         type: _resultList[index]['Type'],
+                    //       ),
+                    //     ),
+                    //   );
+                    //   print("Container tapped!");
+                    // },
                     child:InkWell(
                       onTap: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => CabProfile(
@@ -309,7 +309,7 @@ Widget build(BuildContext context) {
                       ),
                     ),
                     ),
-                    ),
+                    // ),
                     
                   );
                 },

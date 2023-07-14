@@ -93,7 +93,7 @@ class _AddDriverState extends State<AddDriver> {
                   'Linked': false,
                   'Cab Linked':linkedTo
                 });
-                Navigator.push(
+                Navigator.pushReplacement(
             context,
             MaterialPageRoute(
                 builder: (context) => const DriverManager()));

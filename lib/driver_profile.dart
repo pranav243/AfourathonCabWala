@@ -43,7 +43,8 @@ class _DriverProfileState extends State<DriverProfile> {
                 onPressed: (){
                 _firestore.collection("Drivers").doc(ic1).delete();
                 // Navigator.pop(context);
-                Navigator.push(
+                Navigator.of(context).pop();
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const SearchDrivers()));
@@ -74,8 +75,8 @@ class _DriverProfileState extends State<DriverProfile> {
     showDialog(context: context,
         builder: (BuildContext context){
           return  AlertDialog(
-            title: const Text("Change Cab Details ?"),
-            content: const Text("Are you sure you want to edit cab details?"),
+            title: const Text("Change Driver Details ?"),
+            content: const Text("Are you sure you want to edit driver details?"),
             actions: [
               ElevatedButton(
                 style: ButtonStyle(
@@ -90,11 +91,12 @@ class _DriverProfileState extends State<DriverProfile> {
                 _firestore.collection("Drivers").doc(ic1).update({
                   'Contact': contact!=""?contact:ic4,
                   'Name': name!=""?name:ic3,
-                  'RegNumber': driverId!=""?driverId:ic2,
-                  'Location': location!=""?location:ic5,
-                  'Type': emailId!=""?emailId:ic6,
+                  'Driver ID': driverId!=""?driverId:ic2,
+                  'Hometown': location!=""?location:ic5,
+                  'Email ID': emailId!=""?emailId:ic6,
                 });
-                Navigator.push(
+                Navigator.of(context).pop();
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const SearchDrivers()));

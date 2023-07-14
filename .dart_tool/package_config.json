@@ -116,6 +116,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "flutter_csc_picker",
+      "rootUri": "file:///Users/anshavikhanna/.pub-cache/hosted/pub.dev/flutter_csc_picker-0.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///Users/anshavikhanna/.pub-cache/hosted/pub.dev/flutter_lints-2.0.1",
       "packageUri": "lib/",
@@ -290,7 +296,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-07-13T15:26:40.065072Z",
+  "generated": "2023-07-13T18:14:52.920008Z",
   "generator": "pub",
   "generatorVersion": "2.19.4"
 }

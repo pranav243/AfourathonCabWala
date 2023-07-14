@@ -143,17 +143,17 @@ Widget build(BuildContext context) {
                 placeholder: "Search for Drivers",
                 placeholderStyle: const TextStyle(
                     letterSpacing: 0.5,
-                    fontSize: 11,
+                    fontSize: 14,
                     fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w300,
                     color: Color.fromRGBO(96, 96, 96, 0.75)),
                 style: const TextStyle(),
               ),
             ),
-            SizedBox(
+            const SizedBox(
             height: 16,
           ),
-          Text(
+          const Text(
             'Choose driver to edit details',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -208,26 +208,26 @@ Widget build(BuildContext context) {
                     //   tileColor: const Color.fromRGBO(39, 149, 208, 0.27),
                     //   // onTap: (){_sendDocIdToCabProfile(_resultList[index]);}
                     // )
-                    child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DriverProfile(
-                            docId: _resultList[index].id,
-                            driverId: _resultList[index]['Driver ID'],
-                            contact: _resultList[index]['Contact'],
-                            emailId: _resultList[index]['Email ID'],
-                            location: _resultList[index]['Hometown'],
-                            name: _resultList[index]['Name'],
-                          ),
-                        ),
-                      );
-                      print("Container tapped!");
-                    },
+                    // child: GestureDetector(
+                    // onTap: () {
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => DriverProfile(
+                    //         docId: _resultList[index].id,
+                    //         driverId: _resultList[index]['Driver ID'],
+                    //         contact: _resultList[index]['Contact'],
+                    //         emailId: _resultList[index]['Email ID'],
+                    //         location: _resultList[index]['Hometown'],
+                    //         name: _resultList[index]['Name'],
+                    //       ),
+                    //     ),
+                    //   );
+                    //   print("Container tapped!");
+                    // },
                     child:InkWell(
                       onTap: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => DriverProfile(
@@ -312,7 +312,7 @@ Widget build(BuildContext context) {
                       ),
                     ),
                     ),
-                    ),
+                    // ),
                     
                   );
                 },

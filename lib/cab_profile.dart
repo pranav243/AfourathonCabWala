@@ -42,7 +42,8 @@ class _CabProfileState extends State<CabProfile> {
                 onPressed: (){
                 _firestore.collection("Cabs").doc(ic1).delete();
                 // Navigator.pop(context);
-                Navigator.push(
+                Navigator.of(context).pop();
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const SearchCabs()));
@@ -93,10 +94,14 @@ class _CabProfileState extends State<CabProfile> {
                   'Location': location!=""?location:ic5,
                   'Type': type!=""?type:ic6,
                 });
-                Navigator.push(
+                Navigator.of(context).pop();
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const SearchCabs()));
+                // Navigator.pop(context);
+                // int count = 0;
+                // Navigator.of(context).popUntil((_) => count++ >= 2);
               }, child: const Text("Yes")),
               ElevatedButton(
                 style: ButtonStyle(
@@ -205,16 +210,6 @@ class _CabProfileState extends State<CabProfile> {
             ]),
             InkWell(
               onTap: showEditAlert,
-              // splashColor: Colors.amber,
-              // onTap: () {
-                // _firestore.collection("Cabs").doc(ic1).update({
-                //   'Colour': colour!=""?colour:ic4,
-                //   'Model': model!=""?model:ic3,
-                //   'RegNumber': regno!=""?regno:ic2,
-                //   'Location': location!=""?location:ic5,
-                //   'Type': type!=""?type:ic6,
-                // });
-              // },
               child: Container(
                 alignment: Alignment.center,
                 width: 307.91,

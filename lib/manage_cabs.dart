@@ -25,7 +25,12 @@ class _CabManagerState extends State<CabManager> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             InkWell(
-              onTap: () => Navigator.pushNamed(context, AddCab.id),
+              onTap: () {
+                Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddCab(),));
+              },
               child: Container(
                 margin: const EdgeInsets.only(top: 5),
                 padding: const EdgeInsets.only(left: 20),
