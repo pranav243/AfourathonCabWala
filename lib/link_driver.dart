@@ -29,8 +29,8 @@ class _LinkDriverState extends State<LinkDriver> {
   dynamic docId;
   // List _allResults = [];
   // List _resultList = [];
-  List _allResults2 = [];
-  List _resultList2 = [];
+  List? _allResults2 = [];
+  List? _resultList2 = [];
   final TextEditingController _searchController = TextEditingController();
 
   getCollectionStream() async {
@@ -77,7 +77,7 @@ class _LinkDriverState extends State<LinkDriver> {
   searchResultListCabs() {
     var showResults2 = [];
     if (_searchController.text != "") {
-      for (var snapShot in _allResults2) {
+      for (var snapShot in _allResults2!) {
         var docId = snapShot.reference.id.toString();
         var colour = snapShot['Colour'].toLowerCase();
         var regnum = snapShot['RegNumber'].toString().toLowerCase();
@@ -93,24 +93,14 @@ class _LinkDriverState extends State<LinkDriver> {
         }
       }
     } else {
-      showResults2 = List.from(_allResults2);
+      showResults2 = List.from(_allResults2!);
     }
     setState(() {
       _resultList2 = showResults2;
     });
   }
 
-  // getCollectionStream() async {
-  //   var data = await FirebaseFirestore.instance
-  //       .collection('Drivers')
-  //       .orderBy('Driver ID')
-  //       .get();
-
-  //   setState(() {
-  //     _allResults = data.docs;
-  //   });
-  //   searchResultListDrivers();
-  // }
+ 
 
   getCollectionStream2() async {
     var data = await FirebaseFirestore.instance
@@ -123,14 +113,13 @@ class _LinkDriverState extends State<LinkDriver> {
       for (var snapShot in data.docs) {
         if (snapShot['Location'] == widget.driver['Hometown'] &&
             snapShot['Linked'] == false) {
-          _allResults2.add(snapShot);
+          _allResults2!.add(snapShot);
         }
       }
     });
     searchResultListCabs();
   }
 
-  final _firestore = FirebaseFirestore.instance;
   String email = '';
   String name = '';
   String contact = '';
@@ -160,14 +149,14 @@ class _LinkDriverState extends State<LinkDriver> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(bottom: 10),
+                margin: const EdgeInsets.only(bottom: 10),
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 width: 312,
                 height: 50,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                        width: 1, color: Color.fromRGBO(9, 100, 140, 1))),
+                        width: 1, color: const Color.fromRGBO(9, 100, 140, 1))),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -450,7 +439,7 @@ class _LinkDriverState extends State<LinkDriver> {
                 child: ListView.builder(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                  itemCount: _resultList2.length,
+                  itemCount: _resultList2!.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(
@@ -460,7 +449,7 @@ class _LinkDriverState extends State<LinkDriver> {
                         onTap: () async {
                           await FirebaseFirestore.instance
                               .collection('Cabs')
-                              .doc(_resultList2[index].reference.id.toString())
+                              .doc(_resultList2![index].reference.id.toString())
                               .update({
                             'Linked': true,
                             'Driver Linked': widget.driver['Driver ID']
@@ -470,7 +459,7 @@ class _LinkDriverState extends State<LinkDriver> {
                               .doc(widget.driver.reference.id.toString())
                               .update({
                             'Linked': true,
-                            'Cab Linked': _resultList2[index]['RegNumber']
+                            'Cab Linked': _resultList2![index]['RegNumber']
                           });
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
@@ -499,7 +488,7 @@ class _LinkDriverState extends State<LinkDriver> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    _resultList2[index]['Model'],
+                                    _resultList2![index]['Model'],
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500,
                                         color: Color.fromRGBO(9, 100, 140, 1),
@@ -507,7 +496,7 @@ class _LinkDriverState extends State<LinkDriver> {
                                         letterSpacing: 0.5),
                                   ),
                                   Text(
-                                    _resultList2[index]['Location'],
+                                    _resultList2![index]['Location'],
                                     style: const TextStyle(
                                       color: Color(0xFF333434),
                                       fontSize: 11,
@@ -534,7 +523,7 @@ class _LinkDriverState extends State<LinkDriver> {
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     child: Text(
-                                      _resultList2[index]['Type'],
+                                      _resultList2![index]['Type'],
                                       style: const TextStyle(
                                           fontSize: 12,
                                           color: Color.fromRGBO(9, 100, 140, 1),
@@ -542,7 +531,7 @@ class _LinkDriverState extends State<LinkDriver> {
                                     ),
                                   ),
                                   Text(
-                                    _resultList2[index]['RegNumber'],
+                                    _resultList2![index]['RegNumber'],
                                     style: const TextStyle(
                                         fontSize: 9,
                                         fontWeight: FontWeight.w400,

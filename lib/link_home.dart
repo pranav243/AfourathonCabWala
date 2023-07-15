@@ -23,10 +23,10 @@ class LinkHome extends StatefulWidget {
 
 class _LinkHomeState extends State<LinkHome> {
   int page = 0;
-  List _allResults = [];
-  List _resultList = [];
-  List _allResults2 = [];
-  List _resultList2 = [];
+  List? _allResults = [];
+  List? _resultList = [];
+  List? _allResults2 = [];
+  List? _resultList2 = [];
   final TextEditingController _searchController = TextEditingController();
 
   Future<void> showLogoutAlert() async {
@@ -109,7 +109,7 @@ class _LinkHomeState extends State<LinkHome> {
   searchResultListDrivers() {
     var showResults = [];
     if (_searchController.text != "") {
-      for (var snapShot in _allResults) {
+      for (var snapShot in _allResults!) {
         var contact = snapShot['Contact'].toString();
         var name = snapShot['Name'].toString().toLowerCase();
         var driverid = snapShot['Driver ID'].toString().toLowerCase();
@@ -122,7 +122,7 @@ class _LinkHomeState extends State<LinkHome> {
         }
       }
     } else {
-      showResults = List.from(_allResults);
+      showResults = List.from(_allResults!);
     }
     setState(() {
       _resultList = showResults;
@@ -132,7 +132,7 @@ class _LinkHomeState extends State<LinkHome> {
   searchResultListCabs() {
     var showResults2 = [];
     if (_searchController.text != "") {
-      for (var snapShot in _allResults2) {
+      for (var snapShot in _allResults2!) {
         var colour = snapShot['Colour'].toLowerCase();
         var regnum = snapShot['RegNumber'].toString().toLowerCase();
         var type = snapShot['Type'].toString().toLowerCase();
@@ -147,7 +147,7 @@ class _LinkHomeState extends State<LinkHome> {
         }
       }
     } else {
-      showResults2 = List.from(_allResults2);
+      showResults2 = List.from(_allResults2!);
     }
     setState(() {
       _resultList2 = showResults2;
@@ -331,7 +331,7 @@ class _LinkHomeState extends State<LinkHome> {
                 child: ListView.builder(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                  itemCount: _resultList.length,
+                  itemCount: _resultList!.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(
@@ -343,7 +343,7 @@ class _LinkHomeState extends State<LinkHome> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => LinkDriver(
-                                        driver: _resultList[index],
+                                        driver: _resultList?[index],
                                       )));
                         },
                         child: Container(
@@ -351,7 +351,7 @@ class _LinkHomeState extends State<LinkHome> {
                           width: 312,
                           height: 50,
                           decoration: BoxDecoration(
-                              color: _resultList[index]['Linked']
+                              color: _resultList![index]['Linked']
                                   ? const Color.fromRGBO(36, 204, 42, 0.27)
                                   : const Color.fromRGBO(39, 149, 208, 0.27),
                               borderRadius: BorderRadius.circular(10)),
@@ -364,7 +364,7 @@ class _LinkHomeState extends State<LinkHome> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    _resultList[index]['Name'],
+                                    _resultList![index]['Name'],
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500,
                                         color: Color.fromRGBO(9, 100, 140, 1),
@@ -372,7 +372,7 @@ class _LinkHomeState extends State<LinkHome> {
                                         letterSpacing: 0.5),
                                   ),
                                   Text(
-                                    _resultList[index]['Hometown'],
+                                    _resultList![index]['Hometown'],
                                     style: const TextStyle(
                                       color: Color(0xFF333434),
                                       fontSize: 11,
@@ -399,7 +399,7 @@ class _LinkHomeState extends State<LinkHome> {
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     child: Text(
-                                      _resultList[index]['Driver ID'],
+                                      _resultList![index]['Driver ID'],
                                       style: const TextStyle(
                                           fontSize: 12,
                                           color: Color.fromRGBO(9, 100, 140, 1),
@@ -407,7 +407,7 @@ class _LinkHomeState extends State<LinkHome> {
                                     ),
                                   ),
                                   Text(
-                                    _resultList[index]['Contact'],
+                                    _resultList![index]['Contact'],
                                     style: const TextStyle(
                                         fontSize: 9,
                                         fontWeight: FontWeight.w400,
@@ -552,7 +552,7 @@ class _LinkHomeState extends State<LinkHome> {
                 child: ListView.builder(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                  itemCount: _resultList2.length,
+                  itemCount: _resultList2!.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(
@@ -564,7 +564,7 @@ class _LinkHomeState extends State<LinkHome> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => LinkCab(
-                                        cab: _resultList2[index],
+                                        cab: _resultList2?[index],
                                       )));
                         },
                         child: Container(
@@ -572,7 +572,7 @@ class _LinkHomeState extends State<LinkHome> {
                           width: 312,
                           height: 50,
                           decoration: BoxDecoration(
-                              color: _resultList2[index]['Linked']
+                              color: _resultList2![index]['Linked']
                                   ? const Color.fromRGBO(36, 204, 42, 0.27)
                                   : const Color.fromRGBO(39, 149, 208, 0.27),
                               borderRadius: BorderRadius.circular(10)),
@@ -585,7 +585,7 @@ class _LinkHomeState extends State<LinkHome> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    _resultList2[index]['Model'],
+                                    _resultList2![index]['Model'],
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500,
                                         color: Color.fromRGBO(9, 100, 140, 1),
@@ -593,7 +593,7 @@ class _LinkHomeState extends State<LinkHome> {
                                         letterSpacing: 0.5),
                                   ),
                                   Text(
-                                    _resultList2[index]['Location'],
+                                    _resultList2![index]['Location'],
                                     style: const TextStyle(
                                       color: Color(0xFF333434),
                                       fontSize: 11,
@@ -620,7 +620,7 @@ class _LinkHomeState extends State<LinkHome> {
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     child: Text(
-                                      _resultList2[index]['Type'],
+                                      _resultList2![index]['Type'],
                                       style: const TextStyle(
                                           fontSize: 12,
                                           color: Color.fromRGBO(9, 100, 140, 1),
@@ -628,7 +628,7 @@ class _LinkHomeState extends State<LinkHome> {
                                     ),
                                   ),
                                   Text(
-                                    _resultList2[index]['RegNumber'],
+                                    _resultList2![index]['RegNumber'],
                                     style: const TextStyle(
                                         fontSize: 9,
                                         fontWeight: FontWeight.w400,
