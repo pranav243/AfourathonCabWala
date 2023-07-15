@@ -27,8 +27,7 @@ class _LinkDriverState extends State<LinkDriver> {
   dynamic location;
   dynamic regnum;
   dynamic docId;
-  // List _allResults = [];
-  // List _resultList = [];
+
   List? _allResults2 = [];
   List? _resultList2 = [];
   final TextEditingController _searchController = TextEditingController();
@@ -41,11 +40,8 @@ class _LinkDriverState extends State<LinkDriver> {
     print(data);
 
     for (var snapShot in data.docs) {
-      // print(widget.driver['Linked To']);
       if (snapShot['RegNumber'].toString().toLowerCase() ==
-          widget.driver['Cab Linked'].toString().toLowerCase())
-      // if(snapShot['City'].toString().toLowerCase()=='mumbai')
-      {
+          widget.driver['Cab Linked'].toString().toLowerCase()) {
         model = snapShot['Model'];
         type = snapShot['Type'];
         colour = snapShot['Colour'];
@@ -59,7 +55,6 @@ class _LinkDriverState extends State<LinkDriver> {
 
   @override
   void initState() {
-    // getCollectionStream();
     getCollectionStream(); // Call your async function here
     _searchController.addListener(_onSearchChanged);
     super.initState();
@@ -67,11 +62,8 @@ class _LinkDriverState extends State<LinkDriver> {
 
   _onSearchChanged() {
     print(_searchController.text);
-    // if (page == 0) {
-    //   searchResultListDrivers();
-    // } else {
+
     searchResultListCabs();
-    // }
   }
 
   searchResultListCabs() {
@@ -99,8 +91,6 @@ class _LinkDriverState extends State<LinkDriver> {
       _resultList2 = showResults2;
     });
   }
-
- 
 
   getCollectionStream2() async {
     var data = await FirebaseFirestore.instance
@@ -134,7 +124,6 @@ class _LinkDriverState extends State<LinkDriver> {
 
   @override
   void didChangeDependencies() {
-    // getCollectionStream();
     getCollectionStream2();
     super.didChangeDependencies();
   }
@@ -557,7 +546,3 @@ class _LinkDriverState extends State<LinkDriver> {
     }
   }
 }
-
-// plugins {
-//   id 'com.google.gms.google-services' version '4.3.15' apply false
-// }

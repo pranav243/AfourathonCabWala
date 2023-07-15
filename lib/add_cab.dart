@@ -16,7 +16,7 @@ class AddCab extends StatefulWidget {
 class _AddCabState extends State<AddCab> {
   final _firestore = FirebaseFirestore.instance;
 
-  String regno = '', model = '', colour = '', type = '',location='';
+  String regno = '', model = '', colour = '', type = '', location = '';
   String linkedTo = '';
   @override
   Widget build(BuildContext context) {
@@ -40,63 +40,70 @@ class _AddCabState extends State<AddCab> {
             InputBox("Registration Number", TextInputType.name),
             InputBox("Model", TextInputType.name),
             InputBox("Colour", TextInputType.name),
-            Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
-            InputTitle("Location"),
-            SizedBox(
-              height: ScreenUtil().setHeight(60),
-              width: ScreenUtil().setWidth(308),
-              child: DropdownButtonFormField(
-                isDense: false,
-                hint: const Text("Choose City"),
-                icon: const Icon(Icons.keyboard_arrow_down),
-                items: const [
-                  DropdownMenuItem(
-                    value: 'Bangalore',
-                    child: Text("Bangalore, Karnataka"),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                InputTitle("Location"),
+                SizedBox(
+                  height: ScreenUtil().setHeight(60),
+                  width: ScreenUtil().setWidth(308),
+                  child: DropdownButtonFormField(
+                    isDense: false,
+                    hint: const Text("Choose City"),
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: const [
+                      DropdownMenuItem(
+                        value: 'Bangalore',
+                        child: Text("Bangalore, Karnataka"),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Chennai',
+                        child: Text("Chennai, Tamil Nadu"),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Hyderabad',
+                        child: Text("Hyderabad, Telangana"),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Mumbai',
+                        child: Text("Mumbai, Maharashtra"),
+                      ),
+                      DropdownMenuItem(
+                        value: 'New Delhi',
+                        child: Text("New Delhi, Delhi"),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Pune',
+                        child: Text("Pune, Maharashtra"),
+                      )
+                    ],
+                    onChanged: (String? value) {
+                      location = value!;
+                    },
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Color.fromRGBO(51, 52, 52, 1)),
+                    decoration: const InputDecoration(
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: Color.fromRGBO(196, 196, 196, 1)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10)))),
                   ),
-                  DropdownMenuItem(
-                    value: 'Chennai',
-                    child: Text("Chennai, Tamil Nadu"),
-                  ),
-                  DropdownMenuItem(
-                    value: 'Hyderabad',
-                    child: Text("Hyderabad, Telangana"),
-                  ),
-                  DropdownMenuItem(
-                    value: 'Mumbai',
-                    child: Text("Mumbai, Maharashtra"),
-                  ),
-                  DropdownMenuItem(
-                    value: 'New Delhi',
-                    child: Text("New Delhi, Delhi"),
-                  ),
-                  DropdownMenuItem(
-                    value: 'Pune',
-                    child: Text("Pune, Maharashtra"),
-                  )
-                ],
-                onChanged: (String? value) {
-                  location = value!;
-                },
-                style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                    color: Color.fromRGBO(51, 52, 52, 1)),
-                decoration: const InputDecoration(
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 1, color: Color.fromRGBO(196, 196, 196, 1)),
-                        borderRadius: BorderRadius.all(Radius.circular(10)))),
-              ),
-            ),const SizedBox(
-                height: 20,
-              )],),
+                ),
+                const SizedBox(
+                  height: 20,
+                )
+              ],
+            ),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               InputTitle("Cab Type"),
               SizedBox(
-              height: ScreenUtil().setHeight(60),
-              width: ScreenUtil().setWidth(308),
+                  height: ScreenUtil().setHeight(60),
+                  width: ScreenUtil().setWidth(308),
                   child: DropdownButtonFormField(
                     hint: Text("Choose Cab Type"),
                     icon: const Icon(Icons.keyboard_arrow_down),
@@ -136,48 +143,57 @@ class _AddCabState extends State<AddCab> {
             ]),
             InkWell(
               onTap: () {
-                if(colour==''||model==''||regno==''||type==''||location=='')
-                {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Please fill all fields.",
-                            style:TextStyle(color: Colors.red,
-                            fontWeight: FontWeight.w400)),
-                    backgroundColor: Color(0xFFEAF7FF),
-                    elevation: 10));
+                if (colour == '' ||
+                    model == '' ||
+                    regno == '' ||
+                    type == '' ||
+                    location == '') {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("Please fill all fields.",
+                          style: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.w400)),
+                      backgroundColor: Color(0xFFEAF7FF),
+                      elevation: 10));
+                } else {
+                  _firestore.collection("Cabs").add({
+                    'Colour': colour,
+                    'Model': model,
+                    'RegNumber': regno,
+                    'Location': location,
+                    'Type': type,
+                    'Linked': false,
+                    'Driver Linked': linkedTo,
+                  });
+                  var docRef = _firestore.collection('Stats').doc(location);
+                  docRef.update({
+                    "Cabs": FieldValue.increment(1),
+                  });
+                  if (type == 'Mini') {
+                    docRef.update({
+                      "Mini": FieldValue.increment(1),
+                    });
+                  } else if (type == 'Sedan') {
+                    docRef.update({
+                      "Sedan": FieldValue.increment(1),
+                    });
+                  } else if (type == 'SUV') {
+                    docRef.update({
+                      "SUV": FieldValue.increment(1),
+                    });
+                  }
+
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CabManager()));
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("Added a new cab.",
+                          style: TextStyle(
+                              color: Color(0xFF09648C),
+                              fontWeight: FontWeight.w500)),
+                      backgroundColor: Color(0xFFEAF7FF),
+                      elevation: 10));
                 }
-                else
-                {
-                _firestore.collection("Cabs").add({
-                  'Colour': colour,
-                  'Model': model,
-                  'RegNumber': regno,
-                  'Location': location,
-                  'Type': type,
-                  'Linked': false,
-                  'Driver Linked':linkedTo,
-                });
-                var docRef = _firestore.collection('Stats').doc(location);
-                docRef.update({"Cabs": FieldValue.increment(1),});
-                if(type=='Mini')
-                {docRef.update({"Mini": FieldValue.increment(1),});}
-                else if(type=='Sedan')
-                {docRef.update({"Sedan": FieldValue.increment(1),});}
-                else if(type=='SUV')
-                {docRef.update({"SUV": FieldValue.increment(1),});}
-                
-                Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const CabManager()));
-                ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Added a new cab.",
-                            style:TextStyle(color: Color(0xFF09648C),
-                            fontWeight: FontWeight.w500)),
-                    backgroundColor: Color(0xFFEAF7FF),
-                    elevation: 10));
-              }
               },
               child: Container(
                 alignment: Alignment.center,
@@ -199,7 +215,6 @@ class _AddCabState extends State<AddCab> {
         ),
       ),
       extendBody: true,
-      // bottomNavigationBar: BottomNavBar(0, 0, 0, context),
     );
   }
 
@@ -209,8 +224,8 @@ class _AddCabState extends State<AddCab> {
       children: [
         InputTitle(title),
         SizedBox(
-              height: ScreenUtil().setHeight(60),
-              width: ScreenUtil().setWidth(308),
+          height: ScreenUtil().setHeight(60),
+          width: ScreenUtil().setWidth(308),
           child: TextField(
             onChanged: (value) {
               if (title == 'Registration Number') {

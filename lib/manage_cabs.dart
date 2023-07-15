@@ -25,15 +25,14 @@ class _CabManagerState extends State<CabManager> {
             InkWell(
               onTap: () {
                 Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AddCab(),));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddCab(),
+                    ));
               },
               child: Container(
                 margin: const EdgeInsets.only(top: 5),
                 padding: const EdgeInsets.only(left: 20),
-                // height: ScreenUtil().setHeight(74),
-                // width: ScreenUtil().setWidth(312),
                 height: (74),
                 width: (312),
                 decoration: BoxDecoration(
@@ -63,8 +62,6 @@ class _CabManagerState extends State<CabManager> {
               child: Container(
                 margin: const EdgeInsets.only(top: 15),
                 padding: const EdgeInsets.only(left: 20),
-                // height: ScreenUtil().setHeight(74),
-                // width: ScreenUtil().setWidth(312),
                 height: (74),
                 width: (312),
                 decoration: BoxDecoration(
@@ -89,15 +86,11 @@ class _CabManagerState extends State<CabManager> {
                 ),
               ),
             ),
-            // Container(
-            //   margin: EdgeInsets.only(top: 12),
-            //   child: SearchBarWidget(),
-            // ),
           ],
         ),
       ),
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(0, 0, 0,context),
+      bottomNavigationBar: BottomNavBar(0, 0, 0, context),
     );
   }
 }

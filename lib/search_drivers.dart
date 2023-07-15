@@ -14,15 +14,6 @@ class SearchDrivers extends StatefulWidget {
 }
 
 class _SearchDriversState extends State<SearchDrivers> {
-  // void _sendDocIdToCabProfile(dynamic myString) {
-  //   // Call the callback function in the other class and pass the string
-  //   CabProfile.callbackFunction(myString);
-  //   Navigator.push(
-  //                 context,
-  //                 MaterialPageRoute(
-  //                   builder: (context) => CabProfile(),));
-  // }
-
   List _allResults = [];
   List _resultList = [];
   final TextEditingController _searchController = TextEditingController();
@@ -99,28 +90,6 @@ class _SearchDriversState extends State<SearchDrivers> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: regularAppBar(context),
-      // body: Center(
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.start,
-      //     children: [
-      //       CupertinoSearchTextField(
-      //         controller: _searchController,
-      //       ),
-      // SizedBox(
-      //   height: 16,
-      // ),
-      // Text(
-      //   'Choose cab to edit details',
-      //   textAlign: TextAlign.center,
-      //   style: TextStyle(
-      //     color: Color(0xFF09648C),
-      //     fontSize: 14,
-      //     fontFamily: 'Poppins',
-      //     fontWeight: FontWeight.w600,
-      //     // height: 2,
-      //     letterSpacing: 0.50,
-      //   ),
-      // ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -167,30 +136,6 @@ class _SearchDriversState extends State<SearchDrivers> {
               ),
             ),
             Expanded(
-              // Wrap ListView.builder with Expanded
-              // child: ListView.builder(
-              //   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-              //   itemCount: _resultList.length,
-              //   itemBuilder: (context, index) {
-              //     return Padding(
-              //       padding: const EdgeInsets.only(bottom: 8.0),
-              //       child :ListTile(
-              //       title: Text(_resultList[index].id),
-              //       subtitle: Text(_resultList[index]['RegNumber']),
-              //       trailing: Text(_resultList[index]['Location']),
-              //       leading: Text(_resultList[index]['Type']),
-              //       // isThreeLine: true,
-              //       tileColor: const Color.fromRGBO(39, 149, 208, 0.27),
-              //       // onTap: (){_sendDocIdToCabProfile(_resultList[index].id);},
-              //       onTap:(){ Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) => CabProfile(docId:_resultList[index].id,regnumber:_resultList[index]['RegNumber'],model:_resultList[index]['Model'],colour:_resultList[index]['Colour'],location: _resultList[index]['Location'],type:_resultList[index]['Type'])));}
-
-              //       )
-              //     );
-              //   },
-              // ),
               child: ListView.builder(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
@@ -200,32 +145,7 @@ class _SearchDriversState extends State<SearchDrivers> {
                     padding: const EdgeInsets.only(
                       bottom: 8.0,
                     ),
-                    // child: ListTile(
-                    //   title: Text(_resultList[index]['Model']),
-                    //   subtitle: Text(_resultList[index]['RegNumber']),
-                    //   trailing: Text(_resultList[index]['Location']),
-                    //   leading: Text(_resultList[index]['Type']),
-                    //   // isThreeLine: true,
-                    //   tileColor: const Color.fromRGBO(39, 149, 208, 0.27),
-                    //   // onTap: (){_sendDocIdToCabProfile(_resultList[index]);}
-                    // )
-                    // child: GestureDetector(
-                    // onTap: () {
-                    //   Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => DriverProfile(
-                    //         docId: _resultList[index].id,
-                    //         driverId: _resultList[index]['Driver ID'],
-                    //         contact: _resultList[index]['Contact'],
-                    //         emailId: _resultList[index]['Email ID'],
-                    //         location: _resultList[index]['Hometown'],
-                    //         name: _resultList[index]['Name'],
-                    //       ),
-                    //     ),
-                    //   );
-                    //   print("Container tapped!");
-                    // },
+
                     child: InkWell(
                       onTap: () {
                         Navigator.pushReplacement(
@@ -326,40 +246,3 @@ class _SearchDriversState extends State<SearchDrivers> {
     );
   }
 }
-    // return SizedBox(
-    //   width: 312,
-    //   child: TextField(
-    //     // controller: _searchController,
-    //     style: const TextStyle(color: Color(0xFF09648C)),
-    //     decoration: InputDecoration(
-    //       filled: true,
-    //       fillColor: const Color(0xFFEAF7FF),
-    //       // hintText: 'Search for ${widget.searchfor}',
-    //       hintStyle: const TextStyle(
-    //         color: Color(0xBF606060),
-    //         fontSize: 14,
-    //         fontFamily: 'Poppins',
-    //         fontWeight: FontWeight.w400,
-    //       ),
-    //       prefixIcon: const Icon(Icons.search, color: Color(0xFF09648C)),
-    //       border: OutlineInputBorder(
-    //         borderRadius: BorderRadius.circular(25),
-    //         borderSide: BorderSide.none,
-    //       ),
-    //       contentPadding: const EdgeInsets.symmetric(vertical: 12),
-    //       suffixIcon: IconButton(
-    //         icon: const Icon(Icons.clear, color: Color(0xFF09648C)),
-    //         onPressed: () {
-    //           setState(() {
-    //             // _searchController.clear();
-    //           });
-    //         },
-    //       ),
-    //     ),
-    //     onChanged: (value) {
-    //       // Perform search operation with the entered value
-    //       print('Search query: $value');
-    //     },
-    //   ),
-    // );
-// }

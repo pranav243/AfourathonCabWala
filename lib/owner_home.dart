@@ -16,61 +16,67 @@ class OwnerHome extends StatefulWidget {
 }
 
 class _OwnerHomeState extends State<OwnerHome> {
-
-   Future<void> showLogoutAlert() async {
-    showDialog(context: context,
-        builder: (BuildContext context){
-          return  AlertDialog(
+  Future<void> showLogoutAlert() async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
             // title: const Text(""),
             content: const Text("Do you want to logout?"),
             actions: [
               ElevatedButton(
-                style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
-                 overlayColor: MaterialStateProperty.all<Color>(Colors.white),
-                // Add more style properties as needed
-                ),
-                onPressed: logoutUser,
-              child: const Text("Yes")),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color(0xFF09648C)), // Set the background color
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                        Colors.white), // Set the text color
+                    overlayColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                    // Add more style properties as needed
+                  ),
+                  onPressed: logoutUser,
+                  child: const Text("Yes")),
               ElevatedButton(
-                style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
-                 overlayColor: MaterialStateProperty.all<Color>(Colors.white),
-                // Add more style properties as needed
-                ),onPressed: (){
-                Navigator.of(context).pop();
-              }, child: const Text("No")),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color(0xFF09648C)), // Set the background color
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                        Colors.white), // Set the text color
+                    overlayColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                    // Add more style properties as needed
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("No")),
             ],
           );
-        }
-    );
+        });
   }
 
   void logoutUser() async {
-  FirebaseAuth auth = FirebaseAuth.instance;
-  await auth.signOut();
-  print('User logged out');
+    FirebaseAuth auth = FirebaseAuth.instance;
+    await auth.signOut();
+    print('User logged out');
 
-  Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(
-        builder: (context) => const Login()));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const Login()));
 
-  User? user = auth.currentUser;
+    User? user = auth.currentUser;
 
-  if (user != null) {
-    // User is logged in
-    String uid = user.uid;
-    String email = user.email!;
-    // Access other user properties as needed
-    print('User is logged in. UID: $uid, Email: $email');
-  } else {
-    // No user is currently logged in
-    print('No user is currently logged in');
+    if (user != null) {
+      // User is logged in
+      String uid = user.uid;
+      String email = user.email!;
+      // Access other user properties as needed
+      print('User is logged in. UID: $uid, Email: $email');
+    } else {
+      // No user is currently logged in
+      print('No user is currently logged in');
+    }
   }
-}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,13 +113,13 @@ class _OwnerHomeState extends State<OwnerHome> {
 
         actions: [
           GestureDetector(
-            onTap:showLogoutAlert,
-          child :Padding(
-            padding:
-                // EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
-                const EdgeInsets.symmetric(horizontal: (20)),
-            child: SvgPicture.asset("images/logout.svg"),
-          ),
+            onTap: showLogoutAlert,
+            child: Padding(
+              padding:
+                  // EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
+                  const EdgeInsets.symmetric(horizontal: (20)),
+              child: SvgPicture.asset("images/logout.svg"),
+            ),
           ),
         ],
       ),
@@ -155,36 +161,6 @@ class _OwnerHomeState extends State<OwnerHome> {
             const SizedBox(
               height: 20,
             ),
-            // InkWell(
-            //   onTap: () => Navigator.pushNamed(context, CabManager.id),
-            //   child: Container(
-            //     padding: const EdgeInsets.only(left: 20),
-            //     // height: ScreenUtil().setHeight(74),
-            //     // width: ScreenUtil().setWidth(312),
-            //     height: (74),
-            //     width: (312),
-            //     decoration: BoxDecoration(
-            //         color: const Color.fromRGBO(39, 149, 208, 0.27),
-            //         borderRadius: BorderRadius.circular(15)),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.start,
-            //       children: [
-            //         Stack(alignment: Alignment.center, children: [
-            //           SvgPicture.asset("images/ellipse.svg"),
-            //           SvgPicture.asset("images/cab.svg")
-            //         ]),
-            //         const SizedBox(
-            //           width: 20,
-            //         ),
-            //         TitleWidget("Manager Details", "Add/Delete/Update Cabs"),
-            //         const SizedBox(
-            //           width: 60,
-            //         ),
-            //         SvgPicture.asset("images/rightarrow.svg")
-            //       ],
-            //     ),
-            //   ),
-            // )
           ],
         ),
       ),
@@ -194,7 +170,3 @@ class _OwnerHomeState extends State<OwnerHome> {
     );
   }
 }
-
-// plugins {
-//   id 'com.google.gms.google-services' version '4.3.15' apply false
-// }

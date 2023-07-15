@@ -70,12 +70,7 @@ class MyApp extends StatelessWidget {
               SearchForCabs.id: (context) => const SearchForCabs(),
               StatsSearch.id: (context) => const StatsSearch(),
               LinkHome.id: (context) => const LinkHome(),
-
-              // Stats.id: (context) =>  const Stats(),
-              // CabProfile.id: (context) => const CabProfile(),
-              // FirebaseSearchScreen.id: (context) => const FirebaseSearchScreen(),
             },
-            // home: const MyHomePage(title: 'Flutter Demo Home Page'),
           );
         });
   }

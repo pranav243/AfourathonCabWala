@@ -23,13 +23,9 @@ class _ListDriversState extends State<ListDrivers> {
   void getMessagesStream() async {
     await for (var snapshot in _firestore.collection("Drivers").snapshots()) {
       for (var driver in snapshot.docs) {
-        // print(msg.data());
-        // cabsFirebase.add(cab.data());
         Widget widget = Container(
           margin: const EdgeInsets.only(top: 15),
           padding: const EdgeInsets.only(left: 20),
-          // height: ScreenUtil().setHeight(74),
-          // width: ScreenUtil().setWidth(312),
           height: (74),
           width: (312),
           decoration: BoxDecoration(
@@ -38,10 +34,6 @@ class _ListDriversState extends State<ListDrivers> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // Stack(alignment: Alignment.center, children: [
-              //   SvgPicture.asset("images/ellipse.svg"),
-              //   SvgPicture.asset("images/driver.svg")
-              // ]),
               const SizedBox(
                 width: 20,
               ),
@@ -49,7 +41,6 @@ class _ListDriversState extends State<ListDrivers> {
               const SizedBox(
                 width: 50,
               ),
-              // SvgPicture.asset("images/rightarrow.svg")
             ],
           ),
         );
@@ -71,46 +62,10 @@ class _ListDriversState extends State<ListDrivers> {
               // margin: EdgeInsets.only(top: 12),
               child: SearchBarWidget(searchfor: 'Drivers'),
             ),
-            // StreamBuilder<QuerySnapshot>(
-            //   stream: _firestore.collection("Cabs").snapshots(),
-            //   builder: (context, snapshot) {
-            //     cabsWidget.clear();
-            //     if (snapshot.hasData) {
-            //       final cabs = snapshot.data!.docs;
-            //       for (var cab in cabs) {
-            //         final regno = cab['RegNumber'];
-            //         // final msgsender = msg['sender'];
-            //         // final msgwidget = Padding(
-            //           padding: EdgeInsets.all(10),
-            //           child: Column(
-            //             children: [
-            //               // Text(
-            //               //   '$msgsender',
-            //               //   style:
-            //               //       TextStyle(fontSize: 12, color: Colors.black54),
-            //               // ),
-            //               Material(
-            //                 elevation: 5,
-            //                 borderRadius: BorderRadius.circular(30),
-            //                 color: Colors.lightBlueAccent,
-            //                 child: Padding(
-            //                   padding: const EdgeInsets.symmetric(
-            //                       vertical: 10, horizontal: 20),
-            //                   child: Text(
-            //                     '$regno',
-            //                     style: TextStyle(fontSize: 15),
-            //                   ),
-            //                 ),
-            //               ),
-            //             ],
-            //           ),
-            //         );
-            //         cabsWidget.add(msgwidget);
-            //       }
-
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 children: cabsWidget,
               ),
             )

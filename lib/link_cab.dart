@@ -29,8 +29,7 @@ class _LinkCabState extends State<LinkCab> {
   dynamic docId;
   List _allResults = [];
   List _resultList = [];
-  // List _allResults2 = [];
-  // List _resultList2 = [];
+
   final TextEditingController _searchController = TextEditingController();
 
   getCollectionStream() async {
@@ -41,11 +40,8 @@ class _LinkCabState extends State<LinkCab> {
     print(data);
 
     for (var snapShot in data.docs) {
-      // print(widget.driver['Linked To']);
       if (snapShot['Driver ID'].toString().toLowerCase() ==
-          widget.cab['Driver Linked'].toString().toLowerCase())
-      // if(snapShot['City'].toString().toLowerCase()=='mumbai')
-      {
+          widget.cab['Driver Linked'].toString().toLowerCase()) {
         name = snapShot['Name'];
         emailid = snapShot["Email ID"];
         contact = snapShot['Contact'];
@@ -59,7 +55,6 @@ class _LinkCabState extends State<LinkCab> {
 
   @override
   void initState() {
-    // getCollectionStream();
     getCollectionStream(); // Call your async function here
     _searchController.addListener(_onSearchChanged);
     super.initState();
@@ -67,11 +62,8 @@ class _LinkCabState extends State<LinkCab> {
 
   _onSearchChanged() {
     print(_searchController.text);
-    // if (page == 0) {
-    //   searchResultListDrivers();
-    // } else {
+
     searchResultListDrivers();
-    // }
   }
 
   searchResultListDrivers() {
@@ -100,18 +92,6 @@ class _LinkCabState extends State<LinkCab> {
     });
   }
 
-  // getCollectionStream() async {
-  //   var data = await FirebaseFirestore.instance
-  //       .collection('Drivers')
-  //       .orderBy('Driver ID')
-  //       .get();
-
-  //   setState(() {
-  //     _allResults = data.docs;
-  //   });
-  //   searchResultListDrivers();
-  // }
-
   getCollectionStream2() async {
     var data = await FirebaseFirestore.instance
         .collection('Drivers')
@@ -119,7 +99,6 @@ class _LinkCabState extends State<LinkCab> {
         .get();
 
     setState(() {
-      // _allResults2 = data.docs;
       for (var snapShot in data.docs) {
         if (snapShot['Hometown'] == widget.cab['Location'] &&
             snapShot['Linked'] == false) {
@@ -145,7 +124,6 @@ class _LinkCabState extends State<LinkCab> {
 
   @override
   void didChangeDependencies() {
-    // getCollectionStream();
     getCollectionStream2();
     super.didChangeDependencies();
   }
@@ -242,7 +220,6 @@ class _LinkCabState extends State<LinkCab> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          // _resultList2[index]['Model'],
                           name,
                           style: const TextStyle(
                               fontWeight: FontWeight.w500,
@@ -251,14 +228,12 @@ class _LinkCabState extends State<LinkCab> {
                               letterSpacing: 0.5),
                         ),
                         Text(
-                          // _resultList2[index]['Location'],
                           hometown,
                           style: const TextStyle(
                             color: Color(0xFF333434),
                             fontSize: 11,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w400,
-                            // height: 18,
                             letterSpacing: 0.50,
                           ),
                         )
@@ -276,7 +251,6 @@ class _LinkCabState extends State<LinkCab> {
                               color: const Color.fromRGBO(235, 248, 255, 1),
                               borderRadius: BorderRadius.circular(10)),
                           child: Text(
-                            // _resultList2[index]['Type'],
                             driverid,
                             style: const TextStyle(
                                 fontSize: 12,
@@ -285,7 +259,6 @@ class _LinkCabState extends State<LinkCab> {
                           ),
                         ),
                         Text(
-                          // _resultList2[index]['RegNumber'],
                           contact,
                           style: const TextStyle(
                               fontSize: 9,
@@ -568,7 +541,3 @@ class _LinkCabState extends State<LinkCab> {
     }
   }
 }
-
-// plugins {
-//   id 'com.google.gms.google-services' version '4.3.15' apply false
-// }

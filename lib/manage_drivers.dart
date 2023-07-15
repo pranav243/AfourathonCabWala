@@ -15,24 +15,6 @@ class DriverManager extends StatefulWidget {
 }
 
 class _DriverManagerState extends State<DriverManager> {
-//   Future<String> getTotalDocuments() async {
-//   // Replace "yourCollection" with the actual name of your collection
-//   CollectionReference collectionRef =
-//       FirebaseFirestore.instance.collection('Drivers');
-
-//   QuerySnapshot querySnapshot = await collectionRef.get();
-//   int totalDocuments = querySnapshot.size;
-
-//   return "d$totalDocuments";
-// }
-// String driver='';
-//   @override
-//   void initState() {
-//     // TODO: implement initState
-//     super.initState();
-//     driver=getTotalDocuments();
-//   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,22 +25,6 @@ class _DriverManagerState extends State<DriverManager> {
           children: <Widget>[
             InkWell(
               onTap: () {
-                // await getTotalDocuments();
-                // CollectionReference collectionRef =FirebaseFirestore.instance.collection('Drivers');
-                // CollectionReference collectionRef2 =FirebaseFirestore.instance.collection('Deleted Drivers');
-
-                // int? totalDocumentsCount ;
-                // int? totalDocumentsCount2 ;
-
-                // collectionRef.snapshots().listen((QuerySnapshot querySnapshot) {
-                //   totalDocumentsCount = querySnapshot.docs.length;
-                // });
-                // collectionRef2.snapshots().listen((QuerySnapshot querySnapshot2) {
-                //   totalDocumentsCount2 = querySnapshot2.docs.length;
-                // });
-
-                // String drivers="d000$totalDocumentsCount";
-                // Navigator.pushNamed(context, AddDriver.id);
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
@@ -130,10 +96,6 @@ class _DriverManagerState extends State<DriverManager> {
                 ),
               ),
             ),
-            // Container(
-            //   margin: EdgeInsets.only(top: 12),
-            //   child: SearchBarWidget(),
-            // ),
           ],
         ),
       ),

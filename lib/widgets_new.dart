@@ -2,35 +2,6 @@ import 'package:cabwala/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-// Column InputBox(title, keyboardType) {
-//   return Column(
-//     crossAxisAlignment: CrossAxisAlignment.start,
-//     children: [
-//       InputTitle(title),
-//       SizedBox(
-//         height: 46.79,
-//         width: 307.91,
-//         child: TextField(
-//           autocorrect: false,
-//           textAlignVertical: TextAlignVertical.center,
-//           keyboardType: keyboardType,
-//           style: const TextStyle(
-//               fontWeight: FontWeight.w400,
-//               color: Color.fromRGBO(51, 52, 52, 1)),
-//           decoration: const InputDecoration(
-//               border: OutlineInputBorder(
-//                   borderSide: BorderSide(
-//                       width: 1, color: Color.fromRGBO(196, 196, 196, 1)),
-//                   borderRadius: BorderRadius.all(Radius.circular(10)))),
-//         ),
-//       ),
-//       const SizedBox(
-//         height: 20,
-//       )
-//     ],
-//   );
-// }
-
 Container InputTitle(title) {
   return Container(
     margin: const EdgeInsets.only(left: 10, bottom: 5),

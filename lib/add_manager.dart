@@ -17,57 +17,57 @@ class _AddManagerState extends State<AddManager> {
   String email = '';
   String name = '';
   dynamic contact = '';
-  // String home = '';
 
   Future<void> confirmationAlert() async {
-    showDialog(context: context,
-        builder: (BuildContext context){
-          return  AlertDialog(
-            // title: const Text(""),
-            content: const Text("Are you sure you want to authorize this email ID?"),
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content:
+                const Text("Are you sure you want to authorize this email ID?"),
             actions: [
               ElevatedButton(
-                style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFE86666)), // Set the background color
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
-                 overlayColor: MaterialStateProperty.all<Color>(Colors.white),
-                // Add more style properties as needed
-                ),
-                onPressed: (){
-                  _firestore.collection("Managers").add({
-                  'Contact': contact,
-                  'Email ID': email,
-                  // 'Hometown': home,
-                  'Name': name
-                  });
-                // _firestore.collection("Cabs").doc(ic1).delete();
-                // Navigator.pop(context);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const OwnerHome()));
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('New Manager Added.',
-                            style:TextStyle(color: Color(0xFF09648C),
-                            fontWeight: FontWeight.w500)),
-                            backgroundColor: Color(0xFFEAF7FF),
-                            elevation: 10));
-                  }, 
-              child: const Text("Yes")),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color(0xFFE86666)), // Set the background color
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                        Colors.white), // Set the text color
+                    overlayColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                  ),
+                  onPressed: () {
+                    _firestore.collection("Managers").add(
+                        {'Contact': contact, 'Email ID': email, 'Name': name});
+
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const OwnerHome()));
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('New Manager Added.',
+                            style: TextStyle(
+                                color: Color(0xFF09648C),
+                                fontWeight: FontWeight.w500)),
+                        backgroundColor: Color(0xFFEAF7FF),
+                        elevation: 10));
+                  },
+                  child: const Text("Yes")),
               ElevatedButton(
-                style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
-                 overlayColor: MaterialStateProperty.all<Color>(Colors.white),
-                // Add more style properties as needed
-                ),onPressed: (){
-                Navigator.of(context).pop();
-              }, child: const Text("No")),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color(0xFF09648C)), // Set the background color
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                        Colors.white), // Set the text color
+                    overlayColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("No")),
             ],
           );
-        }
-    );
+        });
   }
 
   @override
@@ -89,19 +89,9 @@ class _AddManagerState extends State<AddManager> {
             const SizedBox(
               height: 5,
             ),
-            // InputBox("Name", TextInputType.name),
-            // InputBox("Contact", TextInputType.phone),
             InputBox("Email ID", TextInputType.emailAddress),
-            // InputBox("Hometown", TextInputType.name),
             InkWell(
               onTap: confirmationAlert,
-                // _firestore.collection("Managers").add({
-                //   'Contact': contact,
-                //   'Email ID': email,
-                //   // 'Hometown': home,
-                //   'Name': name
-                // });
-              
               child: Container(
                 alignment: Alignment.center,
                 width: 307.91,

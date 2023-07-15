@@ -197,11 +197,6 @@ class _LinkHomeState extends State<LinkHome> {
     getCollectionStream2();
     super.didChangeDependencies();
   }
-  // @override
-  // void didChangeDependencies() {
-  //   getCollectionStream2();
-  //   super.didChangeDependencies();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -260,19 +255,19 @@ class _LinkHomeState extends State<LinkHome> {
                 children: [
                   Container(
                     alignment: Alignment.center,
-                    child: Text(
+                    width: ScreenUtil().setWidth(132),
+                    decoration: const BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                width: 2,
+                                color: Color.fromRGBO(9, 100, 140, 1)))),
+                    child: const Text(
                       "Drivers",
                       style: TextStyle(
                           fontSize: 16,
                           color: Color.fromRGBO(9, 100, 140, 1),
                           fontWeight: FontWeight.w600),
                     ),
-                    width: ScreenUtil().setWidth(132),
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                                width: 2,
-                                color: Color.fromRGBO(9, 100, 140, 1)))),
                   ),
                   SizedBox(
                     width: ScreenUtil().setWidth(20),
@@ -285,14 +280,14 @@ class _LinkHomeState extends State<LinkHome> {
                     },
                     child: Container(
                       alignment: Alignment.center,
-                      child: Text(
+                      width: ScreenUtil().setWidth(132),
+                      child: const Text(
                         "Cabs",
                         style: TextStyle(
                             fontSize: 16,
                             color: Color.fromRGBO(9, 100, 140, 1),
                             fontWeight: FontWeight.w600),
                       ),
-                      width: ScreenUtil().setWidth(132),
                     ),
                   ),
                 ],
@@ -305,7 +300,7 @@ class _LinkHomeState extends State<LinkHome> {
                 height: 34,
                 alignment: Alignment.center,
                 child: CupertinoSearchTextField(
-                  prefixInsets: EdgeInsets.fromLTRB(20, 5, 5, 5),
+                  prefixInsets: const EdgeInsets.fromLTRB(20, 5, 5, 5),
                   prefixIcon: const Icon(
                     CupertinoIcons.search,
                     color: Colors.black54,
@@ -457,7 +452,7 @@ class _LinkHomeState extends State<LinkHome> {
                       style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w600,
-                          color: Color.fromRGBO(9, 100, 140, 1),
+                          color: const Color.fromRGBO(9, 100, 140, 1),
                           fontSize: ScreenUtil().setSp(27)))
                 ],
               )),
@@ -487,6 +482,7 @@ class _LinkHomeState extends State<LinkHome> {
                     },
                     child: Container(
                       alignment: Alignment.center,
+                      width: ScreenUtil().setWidth(132),
                       child: const Text(
                         "Drivers",
                         style: TextStyle(
@@ -494,7 +490,6 @@ class _LinkHomeState extends State<LinkHome> {
                             color: Color.fromRGBO(9, 100, 140, 1),
                             fontWeight: FontWeight.w600),
                       ),
-                      width: ScreenUtil().setWidth(132),
                     ),
                   ),
                   SizedBox(
@@ -507,6 +502,7 @@ class _LinkHomeState extends State<LinkHome> {
                                 width: 2,
                                 color: Color.fromRGBO(9, 100, 140, 1)))),
                     alignment: Alignment.center,
+                    width: ScreenUtil().setWidth(132),
                     child: const Text(
                       "Cabs",
                       style: TextStyle(
@@ -514,7 +510,6 @@ class _LinkHomeState extends State<LinkHome> {
                           color: Color.fromRGBO(9, 100, 140, 1),
                           fontWeight: FontWeight.w600),
                     ),
-                    width: ScreenUtil().setWidth(132),
                   ),
                 ],
               ),
@@ -526,7 +521,7 @@ class _LinkHomeState extends State<LinkHome> {
                 height: 34,
                 alignment: Alignment.center,
                 child: CupertinoSearchTextField(
-                  prefixInsets: EdgeInsets.fromLTRB(20, 5, 5, 5),
+                  prefixInsets: const EdgeInsets.fromLTRB(20, 5, 5, 5),
                   prefixIcon: const Icon(
                     CupertinoIcons.search,
                     color: Colors.black54,
@@ -654,7 +649,3 @@ class _LinkHomeState extends State<LinkHome> {
     }
   }
 }
-
-// plugins {
-//   id 'com.google.gms.google-services' version '4.3.15' apply false
-// }

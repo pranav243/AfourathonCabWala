@@ -15,7 +15,6 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -26,7 +25,8 @@ class _RegisterState extends State<Register> {
   String _name = '';
   String _contact = '';
 
-  Future<Map<String, dynamic>> checkValueExists(String collectionPath, String fieldName, String valueToCheck) async {
+  Future<Map<String, dynamic>> checkValueExists(
+      String collectionPath, String fieldName, String valueToCheck) async {
     final QuerySnapshot snapshot = await FirebaseFirestore.instance
         .collection(collectionPath)
         .where(fieldName, isEqualTo: valueToCheck)
@@ -41,86 +41,66 @@ class _RegisterState extends State<Register> {
     }
   }
 
-Future<void> notAuthorized() async {
-    showDialog(context: context,
-        builder: (BuildContext context){
-          return  AlertDialog(
+  Future<void> notAuthorized() async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
             title: const Text("Unauthorized Email ID !"),
             content: const Text("You are not authorized to be a manager."),
             actions: [
               ElevatedButton(
-                style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
-                 overlayColor: MaterialStateProperty.all<Color>(Colors.white),
-                // Add more style properties as needed
-                ),onPressed: (){
-                Navigator.of(context).pop();
-              }, child: const Text("OK")),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color(0xFF09648C)), // Set the background color
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                        Colors.white), // Set the text color
+                    overlayColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                    // Add more style properties as needed
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("OK")),
             ],
           );
-        }
-    );
+        });
   }
 
-  
-  //   Future<void> addField() async {
-  //   final DocumentReference documentRef = FirebaseFirestore.instance
-  //       .collection(collectionPath)
-  //       .doc(documentId);
-
-  //   try {
-  //     await documentRef.update({
-  //       fieldName: fieldValue,
-  //     });
-  //     print('Field added successfully');
-  //   } catch (e) {
-  //     print('Error adding field: $e');
-  //   }
-  // }
-
-  // Future<bool> checkValueExists(String collection, String field, String value) async {
-  //   final QuerySnapshot snapshot = await FirebaseFirestore.instance
-  //       .collection(collection)
-  //       .where(field, isEqualTo: value)
-  //       .limit(1)
-  //       .get();
-
-  //   return snapshot.docs.isNotEmpty;
-  // }
-    void handleCheckValue() async {
-    Map<String,dynamic> val = await checkValueExists("Managers","Email ID",_email);
+  void handleCheckValue() async {
+    Map<String, dynamic> val =
+        await checkValueExists("Managers", "Email ID", _email);
     if (val['exists']) {
-      
-       _auth.createUserWithEmailAndPassword(email: _email, password: _password).then((value) {
-        final DocumentReference documentRef = FirebaseFirestore.instance
-        .collection('Managers')
-        .doc(val['documentId']);
-        documentRef.update({
-        "Contact": _contact.toString(),
-        "Name": _name,
-      });
-        print("Created new account");
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const Home()));
-                ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Welcome to CabWala.',
-                            style:TextStyle(color: Color(0xFF09648C),
-                            fontWeight: FontWeight.w500)),
-                            backgroundColor: Color(0xFFEAF7FF),
-                            elevation: 10));
-      },).onError((error, stackTrace) {
+      _auth
+          .createUserWithEmailAndPassword(email: _email, password: _password)
+          .then(
+        (value) {
+          final DocumentReference documentRef = FirebaseFirestore.instance
+              .collection('Managers')
+              .doc(val['documentId']);
+          documentRef.update({
+            "Contact": _contact.toString(),
+            "Name": _name,
+          });
+          print("Created new account");
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => const Home()));
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('Welcome to CabWala.',
+                  style: TextStyle(
+                      color: Color(0xFF09648C), fontWeight: FontWeight.w500)),
+              backgroundColor: Color(0xFFEAF7FF),
+              elevation: 10));
+        },
+      ).onError((error, stackTrace) {
         // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Welcome to CabWala'),));
         notAuthorized();
         print("ERROR ${error.toString()}");
       });
       // Value exists
       print('You are not a manager');
-    } 
-    else {
+    } else {
       notAuthorized();
       // Value does not exist
       print('Value does not exist in the collection');
@@ -164,18 +144,7 @@ Future<void> notAuthorized() async {
           InputBox("Email ID", TextInputType.emailAddress),
           InputBox("Password", TextInputType.text),
           InkWell(
-            onTap:handleCheckValue,
-            // onTap: ()=>{
-
-            //   _auth.createUserWithEmailAndPassword(email: _email, password: _password).then((value) {
-            //     print("Created new account");
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //             builder: (context) => const Home()));
-            //   },).onError((error, stackTrace) {print("ERROR ${error.toString()}");
-            //   })
-            // }, 
+            onTap: handleCheckValue,
             child: Container(
               alignment: Alignment.center,
               width: 307.91,
@@ -230,13 +199,12 @@ Future<void> notAuthorized() async {
                 _email = value;
               } else if (title == 'Name') {
                 _name = value;
-              }
-              else if (title == 'Contact') {
+              } else if (title == 'Contact') {
                 _contact = value;
               }
             },
             autocorrect: false,
-            controller: title=='Contact'?_controller:null,
+            controller: title == 'Contact' ? _controller : null,
             textAlignVertical: TextAlignVertical.center,
             keyboardType: keyboardType,
             style: const TextStyle(
