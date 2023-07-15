@@ -10,19 +10,11 @@ class Stats extends StatefulWidget {
   dynamic city;
   dynamic cabs;
   dynamic suv;
-  dynamic sedan;
-  dynamic mini;
-  dynamic active;
-  dynamic drivers;
-  Stats(
-      {super.key,
-      required this.city,
-      required this.cabs,
-      required this.drivers,
-      required this.mini,
-      required this.sedan,
-      required this.suv,
-      required this.active});
+  dynamic sedan ;
+  dynamic mini ;
+  dynamic active ;
+  dynamic drivers ;
+  Stats({super.key, required this.city, required this.cabs,required this.drivers,required this.mini,required this.sedan,required this.suv,required this.active});
   static String id = "stats_screen";
   @override
   State<Stats> createState() => _StatsState();
@@ -44,7 +36,7 @@ class _StatsState extends State<Stats> {
   @override
   void initState() {
     super.initState();
-    // Call your async function here
+   // Call your async function here
   }
 
   @override
@@ -65,7 +57,7 @@ class _StatsState extends State<Stats> {
               height: ScreenUtil().setHeight(36),
               width: ScreenUtil().setWidth(120),
               child: SvgPicture.asset("images/backbutton.svg")),
-          onTap: () => Navigator.of(context).pop(),
+              onTap: () => Navigator.of(context).pop(),
         ),
         // fontSize: (30)))),
 
@@ -74,10 +66,10 @@ class _StatsState extends State<Stats> {
             padding:
                 // EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
                 const EdgeInsets.symmetric(horizontal: (20)),
-            child: SvgPicture.asset("images/stats-appbar.svg")),
+            child: SvgPicture.asset("images/stats-appbar.svg"),
                 // width: ScreenUtil().setWidth(24),
                 // height: ScreenUtil().setHeight(30)),
-          // )
+          )
         ],
       ),
       body: Center(
@@ -111,20 +103,14 @@ class _StatsState extends State<Stats> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SvgPicture.asset("images/cabs.svg"),
-                    Center(
-                      child: AnimatedNumber(
-                        duration: const Duration(seconds: 2),
-                        startValue: 0,
-                        endValue: widget.cabs,
-                        isFloatingPoint: false,
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: ScreenUtil().setSp(20),
-                          fontWeight: FontWeight.w600,
-                          color: const Color(0xFF1F9D9D),
-                        ),
+                   Center(
+                        child: AnimatedNumber(duration: const Duration(seconds: 2),startValue: 0,endValue:widget.cabs,isFloatingPoint: false, style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: ScreenUtil().setSp(25),
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF1F9D9D),
+                              ) ,),
                       ),
-                    ),
                   ],
                 ),
               ),
@@ -139,19 +125,13 @@ class _StatsState extends State<Stats> {
                   children: [
                     SvgPicture.asset("images/driverbig.svg"),
                     Center(
-                      child: AnimatedNumber(
-                        duration: const Duration(seconds: 2),
-                        startValue: 0,
-                        endValue: widget.drivers,
-                        isFloatingPoint: false,
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: ScreenUtil().setSp(20),
-                          fontWeight: FontWeight.w600,
-                          color: const Color(0xFF1F9D9D),
-                        ),
+                        child: AnimatedNumber(duration: const Duration(seconds: 2),startValue: 0,endValue:widget.drivers,isFloatingPoint: false, style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: ScreenUtil().setSp(25),
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF1F9D9D),
+                              ) ,),
                       ),
-                    ),
                   ],
                 ),
               ),
@@ -182,20 +162,15 @@ class _StatsState extends State<Stats> {
                           height: ScreenUtil().setHeight(72),
                           child: Image.asset("images/mini.png")),
                       Center(
-                        child: AnimatedNumber(
-                          duration: const Duration(seconds: 2),
-                          startValue: 0,
-                          endValue: widget.mini,
-                          isFloatingPoint: false,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: ScreenUtil().setSp(20),
-                            fontWeight: FontWeight.w600,
-                            color: const Color(0xFF1F9D9D),
-                          ),
-                        ),
+                        child: AnimatedNumber(duration: const Duration(seconds: 2),startValue: 0,endValue:widget.mini,isFloatingPoint: false, style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: ScreenUtil().setSp(25),
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF1F9D9D),
+                              ) ,),
                       ),
-                      // child: Text(widget.mini.toString(),
+                          // child: Text(widget.mini.toString(),
+                              
                     ],
                   ),
                   Column(
@@ -214,18 +189,12 @@ class _StatsState extends State<Stats> {
                           height: ScreenUtil().setHeight(72),
                           child: Image.asset("images/sedan.png")),
                       Center(
-                        child: AnimatedNumber(
-                          duration: const Duration(seconds: 2),
-                          startValue: 0,
-                          endValue: widget.sedan,
-                          isFloatingPoint: false,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: ScreenUtil().setSp(20),
-                            fontWeight: FontWeight.w600,
-                            color: const Color(0xFF1F9D9D),
-                          ),
-                        ),
+                        child: AnimatedNumber(duration: const Duration(seconds: 2),startValue: 0,endValue:widget.sedan,isFloatingPoint: false, style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: ScreenUtil().setSp(25),
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF1F9D9D),
+                              ) ,),
                       ),
                     ],
                   ),
@@ -245,25 +214,19 @@ class _StatsState extends State<Stats> {
                           height: ScreenUtil().setHeight(72),
                           child: Image.asset("images/suv.png")),
                       Center(
-                        child: AnimatedNumber(
-                          duration: const Duration(seconds: 2),
-                          startValue: 0,
-                          endValue: widget.suv,
-                          isFloatingPoint: false,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: ScreenUtil().setSp(20),
-                            fontWeight: FontWeight.w600,
-                            color: const Color(0xFF1F9D9D),
-                          ),
-                        ),
+                        child: AnimatedNumber(duration: const Duration(seconds: 2),startValue: 0,endValue:widget.suv,isFloatingPoint: false, style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: ScreenUtil().setSp(25),
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF1F9D9D),
+                              ) ,),
                       ),
                     ],
                   ),
                 ]),
           ),
           Container(
-            height: ScreenUtil().setHeight(253),
+            height: ScreenUtil().setHeight(235),
             width: ScreenUtil().setWidth(334),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -284,18 +247,12 @@ class _StatsState extends State<Stats> {
                     children: [
                       SvgPicture.asset("images/road.svg"),
                       Center(
-                        child: AnimatedNumber(
-                          duration: const Duration(seconds: 2),
-                          startValue: 0,
-                          endValue: widget.active,
-                          isFloatingPoint: false,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: ScreenUtil().setSp(20),
-                            fontWeight: FontWeight.w600,
-                            color: const Color(0xFF1F9D9D),
-                          ),
-                        ),
+                        child: AnimatedNumber(duration: const Duration(seconds: 2),startValue: 0,endValue:widget.active,isFloatingPoint: false, style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: ScreenUtil().setSp(28),
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF1F9D9D),
+                              ) ,),
                       ),
                     ])
               ],
@@ -304,7 +261,7 @@ class _StatsState extends State<Stats> {
         ]),
       ),
       // extendBody: true,
-      // bottomNavigationBar: BottomNavBar(0, 0, 1, context),
+      bottomNavigationBar: BottomNavBar(0, 0, 1, context),
     );
   }
 }
