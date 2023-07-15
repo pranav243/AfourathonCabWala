@@ -317,6 +317,8 @@ Widget build(BuildContext context) {
         ],
       ),
     ),
+      bottomNavigationBar: BottomNavBar(0, 0, 0, context),
+
   );
 }
 }

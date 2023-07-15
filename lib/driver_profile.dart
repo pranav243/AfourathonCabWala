@@ -2,6 +2,7 @@ import 'package:cabwala/search_drivers.dart';
 import 'package:cabwala/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class DriverProfile extends StatefulWidget {
@@ -42,6 +43,14 @@ class _DriverProfileState extends State<DriverProfile> {
                 onPressed: (){
                 _firestore.collection("Drivers").doc(ic1).delete();
                 // Navigator.pop(context);
+                _firestore.collection("Deleted Drivers").add({
+                  // 'Driver ID':
+                  //     "d-${location.toLowerCase()}-${contact.substring(contact.length - 4)}",
+                  'Contact': widget.contact,
+                  'Email ID': widget.emailId,
+                  'Hometown': widget.location,
+                  'Name': widget.name,
+                });
                 Navigator.of(context).pop();
                 Navigator.pushReplacement(
                     context,
@@ -49,7 +58,7 @@ class _DriverProfileState extends State<DriverProfile> {
                         builder: (context) => const SearchDrivers()));
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text('Deleted cab from database.',
+                            content: Text('Deleted driver from database.',
                             style:TextStyle(color: Color(0xFF09648C),
                             fontWeight: FontWeight.w500)),
                             backgroundColor: Color(0xFFEAF7FF),
@@ -169,7 +178,60 @@ class _DriverProfileState extends State<DriverProfile> {
             InputBox("Email ID | $ic6","Email ID", TextInputType.emailAddress),
             InputBox("Contact | $ic4","Contact", TextInputType.phone),
             // InputBox("Location", TextInputType.name),
-            InputBox("Hometown | $ic5","Location",TextInputType.name),
+            // InputBox("Hometown | $ic5","Location",TextInputType.name),
+
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              DetailTitle("Hometown | $ic5"),
+              SizedBox(
+                  height: ScreenUtil().setHeight(38),
+                  width: ScreenUtil().setWidth(308),
+                  child: DropdownButtonFormField(
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: const [
+                      DropdownMenuItem(
+                    value: 'Bangalore',
+                    child: Text("Bangalore, Karnataka"),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Chennai',
+                    child: Text("Chennai, Tamil Nadu"),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Hyderabad',
+                    child: Text("Hyderabad, Telangana"),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Mumbai',
+                    child: Text("Mumbai, Maharashtra"),
+                  ),
+                  DropdownMenuItem(
+                    value: 'New Delhi',
+                    child: Text("New Delhi, Delhi"),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Pune',
+                    child: Text("Pune, Maharashtra"),
+                  )
+                    ],
+                    onChanged: (String? value) {
+                      location = value!;
+                    },
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w400, color: Color(0xFF09648C)),
+                    decoration: const InputDecoration(
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: Color.fromRGBO(196, 196, 196, 1)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10)))),
+                  )),
+              const SizedBox(
+                height: 20,
+              )
+            ]),
             // Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             //   DetailTitle("Cab Type | $ic6"),
             //   SizedBox(
@@ -267,7 +329,7 @@ class _DriverProfileState extends State<DriverProfile> {
         ),
       ),
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(0, 0, 0, context),
+      // bottomNavigationBar: BottomNavBar(0, 0, 0, context),
     );
   }
 

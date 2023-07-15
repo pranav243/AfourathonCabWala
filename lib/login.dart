@@ -138,6 +138,7 @@ void _login() async {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -231,7 +232,7 @@ void _login() async {
                   style: TextStyle(
                       color: const Color(0xFF09648C),
                       fontSize: ScreenUtil().setSp(13),
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w500,
                       letterSpacing: 0.5),
                 ),
               )

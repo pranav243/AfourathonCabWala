@@ -18,6 +18,13 @@ import 'manage_cabs.dart';
 import 'manage_managers.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'owner_login.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+
+// Future<String> getInitialRoute() async {
+//   SharedPreferences prefs = await SharedPreferences.getInstance();
+//   String initialRoute = prefs.getString('initial_route') ?? '/'; // Default route is '/'
+//   return initialRoute;
+// }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,13 +68,12 @@ class MyApp extends StatelessWidget {
               Register.id: (context) => const Register(),
               SearchCabs.id: (context) => const SearchCabs(),
               SearchForCabs.id: (context) => const SearchForCabs(),
-              StatsSearch.id:(context)=> const StatsSearch(),
-              LinkHome.id:(context)=> const LinkHome(),
-              
-              Stats.id: (context) =>  const Stats(),
+              StatsSearch.id: (context) => const StatsSearch(),
+              LinkHome.id: (context) => const LinkHome(),
+
+              // Stats.id: (context) =>  const Stats(),
               // CabProfile.id: (context) => const CabProfile(),
               // FirebaseSearchScreen.id: (context) => const FirebaseSearchScreen(),
-              
             },
             // home: const MyHomePage(title: 'Flutter Demo Home Page'),
           );

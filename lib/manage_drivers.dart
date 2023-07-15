@@ -60,10 +60,10 @@ class _DriverManagerState extends State<DriverManager> {
                 // String drivers="d000$totalDocumentsCount";
                 // Navigator.pushNamed(context, AddDriver.id);
                 Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AddDriver(),));
-                
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddDriver(),
+                    ));
               },
               child: Container(
                 margin: const EdgeInsets.only(top: 5),

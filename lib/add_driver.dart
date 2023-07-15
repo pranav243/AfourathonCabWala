@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+
 class AddDriver extends StatefulWidget {
   static String id = "adddriver_screen";
   dynamic driverId;
@@ -16,34 +17,7 @@ class AddDriver extends StatefulWidget {
 
 class _AddDriverState extends State<AddDriver> {
   final _firestore = FirebaseFirestore.instance;
-
-//   Future<String> getDriverId() async {
-//   CollectionReference collectionRef =_firestore.collection('Drivers');
-//   QuerySnapshot querySnapshot = await collectionRef.get();
-//   CollectionReference collectionRef2 =_firestore.collection('Deleted Drivers');
-//   QuerySnapshot querySnapshot2 = await collectionRef2.get();
-//   int driverCount = querySnapshot.size;
-//   int deletedDriverCount = querySnapshot2.size;
-//   String drivers="d${driverCount+deletedDriverCount}";
-//   return drivers;
-// }
-// String? getTotalDocumentsCount() {
-//   CollectionReference collectionRef =FirebaseFirestore.instance.collection('Drivers');
-//   CollectionReference collectionRef2 =FirebaseFirestore.instance.collection('Deleted Drivers');
-
-//   int totalDocumentsCount = 0;
-//   int totalDocumentsCount2 = 0;
-
-//   collectionRef.snapshots().listen((QuerySnapshot querySnapshot) {
-//     totalDocumentsCount = querySnapshot.size;
-//   });
-//   collectionRef2.snapshots().listen((QuerySnapshot querySnapshot2) {
-//     totalDocumentsCount2 = querySnapshot2.size;
-//   });
-
-//   String drivers="d${totalDocumentsCount+totalDocumentsCount2}";
-//   return drivers;
-// }
+  final TextEditingController _controller = TextEditingController(text: '+91 ');
 
   String email = '';
   String name = '';
@@ -51,11 +25,6 @@ class _AddDriverState extends State<AddDriver> {
   String home = '';
   String linkedTo = '';
   String driverId = '';
-
-  // @override
-  // void initState() {
-  //   driverID=widget.driverId;
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +93,7 @@ class _AddDriverState extends State<AddDriver> {
                     color: Color.fromRGBO(51, 52, 52, 1)),
                 decoration: const InputDecoration(
                     contentPadding:
-                        EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 15),
                     border: OutlineInputBorder(
                         borderSide: BorderSide(
                             width: 1, color: Color.fromRGBO(196, 196, 196, 1)),
@@ -135,6 +104,18 @@ class _AddDriverState extends State<AddDriver> {
               )],),
             InkWell(
               onTap: () {
+                if(contact==''||email==''||home==''||name=='')
+                {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Please fill all fields.",
+                            style:TextStyle(color: Colors.red,
+                            fontWeight: FontWeight.w400)),
+                    backgroundColor: Color(0xFFEAF7FF),
+                    elevation: 10));
+                }
+                else
+                {
                 _firestore.collection("Drivers").add({
                   'Driver ID':
                       "d-${home.substring(0, 3).toLowerCase()}-${contact.substring(contact.length - 4)}",
@@ -145,6 +126,11 @@ class _AddDriverState extends State<AddDriver> {
                   'Linked': false,
                   'Cab Linked': linkedTo
                 });
+                var docRef = _firestore.collection('Stats').doc(home);
+                docRef.update(
+                  {"Drivers": FieldValue.increment(1),
+                  "Active Rides": FieldValue.increment(1),},
+                );
                 Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -156,6 +142,7 @@ class _AddDriverState extends State<AddDriver> {
                             fontWeight: FontWeight.w500)),
                     backgroundColor: Color(0xFFEAF7FF),
                     elevation: 10));
+              }
               },
               child: Container(
                 alignment: Alignment.center,
@@ -177,7 +164,7 @@ class _AddDriverState extends State<AddDriver> {
         ),
       ),
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(0, 0, 0, context),
+      // bottomNavigationBar: BottomNavBar(0, 0, 0, context),
     );
   }
 
@@ -205,6 +192,7 @@ class _AddDriverState extends State<AddDriver> {
             },
             autocorrect: false,
             textAlignVertical: TextAlignVertical.center,
+            controller: title=='Contact'?_controller:null,
             keyboardType: keyboardType,
             style: const TextStyle(
                 fontWeight: FontWeight.w400,
@@ -219,7 +207,7 @@ class _AddDriverState extends State<AddDriver> {
           ),
         ),
         const SizedBox(
-          height: 20,
+          height: 12,
         )
       ],
     );
@@ -253,7 +241,7 @@ class _AddDriverState extends State<AddDriver> {
           ),
         ),
         const SizedBox(
-          height: 20,
+          height: 12,
         )
       ],
     );
