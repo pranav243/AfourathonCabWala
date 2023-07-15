@@ -83,7 +83,7 @@ class _AddCabState extends State<AddCab> {
                     color: Color.fromRGBO(51, 52, 52, 1)),
                 decoration: const InputDecoration(
                     contentPadding:
-                        EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 15),
                     border: OutlineInputBorder(
                         borderSide: BorderSide(
                             width: 1, color: Color.fromRGBO(196, 196, 196, 1)),
@@ -122,7 +122,7 @@ class _AddCabState extends State<AddCab> {
                         color: Color.fromRGBO(51, 52, 52, 1)),
                     decoration: const InputDecoration(
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 15),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
                                 width: 1,
@@ -136,6 +136,18 @@ class _AddCabState extends State<AddCab> {
             ]),
             InkWell(
               onTap: () {
+                if(colour==''||model==''||regno==''||type==''||location=='')
+                {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Please fill all fields.",
+                            style:TextStyle(color: Colors.red,
+                            fontWeight: FontWeight.w400)),
+                    backgroundColor: Color(0xFFEAF7FF),
+                    elevation: 10));
+                }
+                else
+                {
                 _firestore.collection("Cabs").add({
                   'Colour': colour,
                   'Model': model,
@@ -145,6 +157,15 @@ class _AddCabState extends State<AddCab> {
                   'Linked': false,
                   'Driver Linked':linkedTo,
                 });
+                var docRef = _firestore.collection('Stats').doc(location);
+                docRef.update({"Cabs": FieldValue.increment(1),});
+                if(type=='Mini')
+                {docRef.update({"Mini": FieldValue.increment(1),});}
+                else if(type=='Sedan')
+                {docRef.update({"Sedan": FieldValue.increment(1),});}
+                else if(type=='SUV')
+                {docRef.update({"SUV": FieldValue.increment(1),});}
+                
                 Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -156,6 +177,7 @@ class _AddCabState extends State<AddCab> {
                             fontWeight: FontWeight.w500)),
                     backgroundColor: Color(0xFFEAF7FF),
                     elevation: 10));
+              }
               },
               child: Container(
                 alignment: Alignment.center,
@@ -177,7 +199,7 @@ class _AddCabState extends State<AddCab> {
         ),
       ),
       extendBody: true,
-      // bottomNavigationBar: BottomNavBar(0, 0, context),
+      // bottomNavigationBar: BottomNavBar(0, 0, 0, context),
     );
   }
 
@@ -187,7 +209,7 @@ class _AddCabState extends State<AddCab> {
       children: [
         InputTitle(title),
         SizedBox(
-                        height: ScreenUtil().setHeight(60),
+              height: ScreenUtil().setHeight(60),
               width: ScreenUtil().setWidth(308),
           child: TextField(
             onChanged: (value) {
@@ -219,7 +241,7 @@ class _AddCabState extends State<AddCab> {
           ),
         ),
         const SizedBox(
-          height: 20,
+          height: 12,
         )
       ],
     );

@@ -70,23 +70,16 @@ AppBar regularAppBar(BuildContext context) {
     backgroundColor: Colors.white,
     leadingWidth: 0,
     title: InkWell(
+        // onTap: ()=> Navigator.of(context).popUntil((route) => route.isFirst),
         onTap: () => Navigator.pop(context),
         child: SvgPicture.asset("images/backbutton.svg")),
 
-    // actions: const [
-    //   Padding(
-    //     padding:
-    //         // EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
-    //         EdgeInsets.symmetric(horizontal: (20)),
-    //     // child: SvgPicture.asset("images/profile.svg"),
-    //   )
-    // ],
-    actions: [
+    actions: const [
       Padding(
         padding:
             // EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
-            const EdgeInsets.symmetric(horizontal: (20)),
-        child: SvgPicture.asset("images/logout.svg"),
+            EdgeInsets.symmetric(horizontal: (20)),
+        // child: SvgPicture.asset("images/profile.svg"),
       )
     ],
   );

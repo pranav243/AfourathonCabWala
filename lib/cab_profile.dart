@@ -2,6 +2,7 @@ import 'package:cabwala/search_cabs.dart';
 import 'package:cabwala/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CabProfile extends StatefulWidget {
@@ -41,6 +42,13 @@ class _CabProfileState extends State<CabProfile> {
                 ),
                 onPressed: (){
                 _firestore.collection("Cabs").doc(ic1).delete();
+                _firestore.collection("Deleted Cabs").add({
+                  'Colour': widget.colour,
+                  'Model': widget.model,
+                  'RegNumber': widget.regnumber,
+                  'Location': widget.location,
+                  'Type': widget.type,
+                });
                 // Navigator.pop(context);
                 Navigator.of(context).pop();
                 Navigator.pushReplacement(
@@ -166,7 +174,59 @@ class _CabProfileState extends State<CabProfile> {
             InputBox("Model | $ic3","Model", TextInputType.name),
             InputBox("Colour | $ic4","Colour", TextInputType.name),
             // InputBox("Location", TextInputType.name),
-            InputBox("Location | $ic5","Location",TextInputType.name),
+            // InputBox("Location | $ic5","Location",TextInputType.name),
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              DetailTitle("Location | $ic5"),
+              SizedBox(
+                  height: ScreenUtil().setHeight(38),
+                  width: ScreenUtil().setWidth(308),
+                  child: DropdownButtonFormField(
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: const [
+                      DropdownMenuItem(
+                    value: 'Bangalore',
+                    child: Text("Bangalore, Karnataka"),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Chennai',
+                    child: Text("Chennai, Tamil Nadu"),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Hyderabad',
+                    child: Text("Hyderabad, Telangana"),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Mumbai',
+                    child: Text("Mumbai, Maharashtra"),
+                  ),
+                  DropdownMenuItem(
+                    value: 'New Delhi',
+                    child: Text("New Delhi, Delhi"),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Pune',
+                    child: Text("Pune, Maharashtra"),
+                  )
+                    ],
+                    onChanged: (String? value) {
+                      location = value!;
+                    },
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w400, color: Color(0xFF09648C)),
+                    decoration: const InputDecoration(
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: Color.fromRGBO(196, 196, 196, 1)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10)))),
+                  )),
+              const SizedBox(
+                height: 20,
+              )
+            ]),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               DetailTitle("Cab Type | $ic6"),
               SizedBox(
@@ -254,7 +314,7 @@ class _CabProfileState extends State<CabProfile> {
         ),
       ),
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(0, 0, 0, context),
+      // bottomNavigationBar: BottomNavBar(0, 0, 0, context),
     );
   }
 
@@ -305,50 +365,50 @@ class _CabProfileState extends State<CabProfile> {
     );
   }
 
-  Column FixedBox(title,key) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        InputTitle(title),
-        SizedBox(
-          height: 46.79,
-          width: 307.91,
-          child: TextFormField(
-            enabled:false,
-            onChanged: (value) {
-              if (key == 'Registration Number') {
-                regno = value;
-              } else if (key == "Model") {
-                model = value;
-              } else if (key == 'Colour') {
-                colour = value;
-              } else if (key == 'Cab Type') {
-                type = value;
-              } else if (key == 'Location') {
-                location = value;
-              }
-            },
-            autocorrect: false,
-            textAlignVertical: TextAlignVertical.center,
-            // keyboardType: keyboardType,
-            style: const TextStyle(
-                fontWeight: FontWeight.w400,
-                color: Color.fromRGBO(51, 52, 52, 1)),
-            decoration: const InputDecoration(
-                hintText: "Kanpur",
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 1, color: Color.fromRGBO(196, 196, 196, 1)),
-                    borderRadius: BorderRadius.all(Radius.circular(10)))),
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        )
-      ],
-    );
-  }
+  // Column FixedBox(title,key) {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       InputTitle(title),
+  //       SizedBox(
+  //         height: 46.79,
+  //         width: 307.91,
+  //         child: TextFormField(
+  //           enabled:false,
+  //           onChanged: (value) {
+  //             if (key == 'Registration Number') {
+  //               regno = value;
+  //             } else if (key == "Model") {
+  //               model = value;
+  //             } else if (key == 'Colour') {
+  //               colour = value;
+  //             } else if (key == 'Cab Type') {
+  //               type = value;
+  //             } else if (key == 'Location') {
+  //               location = value;
+  //             }
+  //           },
+  //           autocorrect: false,
+  //           textAlignVertical: TextAlignVertical.center,
+  //           // keyboardType: keyboardType,
+  //           style: const TextStyle(
+  //               fontWeight: FontWeight.w400,
+  //               color: Color.fromRGBO(51, 52, 52, 1)),
+  //           decoration: const InputDecoration(
+  //               hintText: "Kanpur",
+  //               contentPadding:
+  //                   EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+  //               border: OutlineInputBorder(
+  //                   borderSide: BorderSide(
+  //                       width: 1, color: Color.fromRGBO(196, 196, 196, 1)),
+  //                   borderRadius: BorderRadius.all(Radius.circular(10)))),
+  //         ),
+  //       ),
+  //       const SizedBox(
+  //         height: 20,
+  //       )
+  //     ],
+  //   );
+  // }
 }
 

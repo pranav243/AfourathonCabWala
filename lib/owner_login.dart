@@ -86,6 +86,13 @@ void handleCheckValue() async {
             context,
             MaterialPageRoute(
                 builder: (context) => const OwnerHome()));
+        ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Logged in as Owner',
+          style:TextStyle(color: Color(0xFF09648C),
+          fontWeight: FontWeight.w500)),
+          backgroundColor: Color(0xFFEAF7FF),
+          elevation: 10));
       },).onError((error, stackTrace) {
         invalidPassword();
         // print("ERROR ${error.toString()}");
@@ -103,6 +110,7 @@ void handleCheckValue() async {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -131,7 +139,7 @@ void handleCheckValue() async {
           SizedBox(
             height: ScreenUtil().setHeight(25),
             width: ScreenUtil().setWidth(133),
-            child: Text("Log in to continue",
+            child: Text("Log in as Owner",
                 style: TextStyle(
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w400,

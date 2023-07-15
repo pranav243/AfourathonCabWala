@@ -1,4 +1,3 @@
-import 'package:cabwala/link_driver.dart';
 import 'package:cabwala/link_home.dart';
 import 'package:cabwala/list_drivers.dart';
 import 'package:cabwala/login.dart';
@@ -19,6 +18,13 @@ import 'manage_cabs.dart';
 import 'manage_managers.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'owner_login.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+
+// Future<String> getInitialRoute() async {
+//   SharedPreferences prefs = await SharedPreferences.getInstance();
+//   String initialRoute = prefs.getString('initial_route') ?? '/'; // Default route is '/'
+//   return initialRoute;
+// }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -64,9 +70,8 @@ class MyApp extends StatelessWidget {
               SearchForCabs.id: (context) => const SearchForCabs(),
               StatsSearch.id: (context) => const StatsSearch(),
               LinkHome.id: (context) => const LinkHome(),
-              LinkDriver.id: (context) => LinkDriver(),
 
-              Stats.id: (context) => const Stats(),
+              // Stats.id: (context) =>  const Stats(),
               // CabProfile.id: (context) => const CabProfile(),
               // FirebaseSearchScreen.id: (context) => const FirebaseSearchScreen(),
             },

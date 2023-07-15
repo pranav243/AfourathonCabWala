@@ -19,10 +19,12 @@ class _RegisterState extends State<Register> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  final TextEditingController _controller = TextEditingController(text: '+91 ');
+
   String _email = '';
   String _password = '';
   String _name = '';
-  final String _contact = '';
+  String _contact = '';
 
   Future<Map<String, dynamic>> checkValueExists(String collectionPath, String fieldName, String valueToCheck) async {
     final QuerySnapshot snapshot = await FirebaseFirestore.instance
@@ -128,6 +130,7 @@ Future<void> notAuthorized() async {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -181,7 +184,7 @@ Future<void> notAuthorized() async {
                   color: const Color.fromRGBO(9, 100, 140, 1),
                   borderRadius: BorderRadius.circular(20)),
               child: const Text(
-                "Register",
+                "Sign Up",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -196,11 +199,11 @@ Future<void> notAuthorized() async {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Waiting for owner to approve request",
+                "Only authorized email IDs can register",
                 style: TextStyle(
                     color: const Color.fromRGBO(144, 152, 177, 1),
                     fontSize: ScreenUtil().setSp(12),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w500,
                     letterSpacing: 0.5),
               ),
             ],
@@ -216,7 +219,7 @@ Future<void> notAuthorized() async {
       children: [
         InputTitle(title),
         SizedBox(
-          height: 46.79,
+          height: 40,
           width: 307.91,
           child: TextField(
             obscureText: title == "Password" ? true : false,
@@ -228,8 +231,12 @@ Future<void> notAuthorized() async {
               } else if (title == 'Name') {
                 _name = value;
               }
+              else if (title == 'Contact') {
+                _contact = value;
+              }
             },
             autocorrect: false,
+            controller: title=='Contact'?_controller:null,
             textAlignVertical: TextAlignVertical.center,
             keyboardType: keyboardType,
             style: const TextStyle(

@@ -1,10 +1,13 @@
+import 'package:cabwala/link_cab.dart';
 import 'package:cabwala/link_driver.dart';
 import 'package:cabwala/manage_drivers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'login.dart';
 import 'manage_cabs.dart';
 import 'widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,6 +28,67 @@ class _LinkHomeState extends State<LinkHome> {
   List _allResults2 = [];
   List _resultList2 = [];
   final TextEditingController _searchController = TextEditingController();
+
+  Future<void> showLogoutAlert() async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            // title: const Text(""),
+            content: const Text("Do you want to logout?"),
+            actions: [
+              ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color(0xFF09648C)), // Set the background color
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                        Colors.white), // Set the text color
+                    overlayColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                    // Add more style properties as needed
+                  ),
+                  onPressed: logoutUser,
+                  child: const Text("Yes")),
+              ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color(0xFF09648C)), // Set the background color
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                        Colors.white), // Set the text color
+                    overlayColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                    // Add more style properties as needed
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("No")),
+            ],
+          );
+        });
+  }
+
+  void logoutUser() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    await auth.signOut();
+    print('User logged out');
+
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const Login()));
+
+    User? user = auth.currentUser;
+
+    if (user != null) {
+      // User is logged in
+      String uid = user.uid;
+      String email = user.email!;
+      // Access other user properties as needed
+      print('User is logged in. UID: $uid, Email: $email');
+    } else {
+      // No user is currently logged in
+      print('No user is currently logged in');
+    }
+  }
 
   @override
   void initState() {
@@ -169,19 +233,22 @@ class _LinkHomeState extends State<LinkHome> {
                       style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w600,
-                          color: Color.fromRGBO(9, 100, 140, 1),
+                          color: const Color.fromRGBO(9, 100, 140, 1),
                           fontSize: ScreenUtil().setSp(27)))
                 ],
               )),
           // fontSize: (30)))),
 
           actions: [
-            Padding(
-              padding:
-                  // EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
-                  const EdgeInsets.symmetric(horizontal: (20)),
-              child: SvgPicture.asset("images/logout.svg"),
-            )
+            GestureDetector(
+              onTap: showLogoutAlert,
+              child: Padding(
+                padding:
+                    // EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
+                    const EdgeInsets.symmetric(horizontal: (20)),
+                child: SvgPicture.asset("images/logout.svg"),
+              ),
+            ),
           ],
         ),
         body: Center(
@@ -272,21 +339,6 @@ class _LinkHomeState extends State<LinkHome> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          // if (_resultList[index]['Linked']) {
-                          //   Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //           builder: (context) => LinkDriver(
-                          //                 driver: _resultList[index],
-                          //               )));
-                          // } else {
-                          //   Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //           builder: (context) => LinkDriver(
-                          //                 driver: _resultList[index],
-                          //               )));
-                          // }
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -374,7 +426,7 @@ class _LinkHomeState extends State<LinkHome> {
             ],
           ),
         ),
-        extendBody: true,
+        // extendBody: true,
         bottomNavigationBar: BottomNavBar(0, 1, 0, context),
         // )
       );
@@ -506,73 +558,86 @@ class _LinkHomeState extends State<LinkHome> {
                       padding: const EdgeInsets.only(
                         bottom: 8.0,
                       ),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        width: 312,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            color: _resultList2[index]['Linked']
-                                ? const Color.fromRGBO(36, 204, 42, 0.27)
-                                : const Color.fromRGBO(39, 149, 208, 0.27),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  _resultList2[index]['Model'],
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: Color.fromRGBO(9, 100, 140, 1),
-                                      fontSize: 16,
-                                      letterSpacing: 0.5),
-                                ),
-                                Text(
-                                  _resultList2[index]['Location'],
-                                  style: const TextStyle(
-                                    color: Color(0xFF333434),
-                                    fontSize: 11,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w400,
-                                    // height: 18,
-                                    letterSpacing: 0.50,
-                                  ),
-                                )
-                              ],
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  height: 16,
-                                  width: 80,
-                                  decoration: BoxDecoration(
-                                      color: const Color.fromRGBO(
-                                          235, 248, 255, 1),
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Text(
-                                    _resultList2[index]['Type'],
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LinkCab(
+                                        cab: _resultList2[index],
+                                      )));
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          width: 312,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              color: _resultList2[index]['Linked']
+                                  ? const Color.fromRGBO(36, 204, 42, 0.27)
+                                  : const Color.fromRGBO(39, 149, 208, 0.27),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    _resultList2[index]['Model'],
                                     style: const TextStyle(
-                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
                                         color: Color.fromRGBO(9, 100, 140, 1),
-                                        fontWeight: FontWeight.w500),
+                                        fontSize: 16,
+                                        letterSpacing: 0.5),
                                   ),
-                                ),
-                                Text(
-                                  _resultList2[index]['RegNumber'],
-                                  style: const TextStyle(
-                                      fontSize: 9,
+                                  Text(
+                                    _resultList2[index]['Location'],
+                                    style: const TextStyle(
+                                      color: Color(0xFF333434),
+                                      fontSize: 11,
+                                      fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w400,
-                                      letterSpacing: 0.5),
-                                )
-                              ],
-                            ),
-                          ],
+                                      // height: 18,
+                                      letterSpacing: 0.50,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.center,
+                                    height: 16,
+                                    width: 80,
+                                    decoration: BoxDecoration(
+                                        color: const Color.fromRGBO(
+                                            235, 248, 255, 1),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Text(
+                                      _resultList2[index]['Type'],
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          color: Color.fromRGBO(9, 100, 140, 1),
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ),
+                                  Text(
+                                    _resultList2[index]['RegNumber'],
+                                    style: const TextStyle(
+                                        fontSize: 9,
+                                        fontWeight: FontWeight.w400,
+                                        letterSpacing: 0.5),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
@@ -582,105 +647,11 @@ class _LinkHomeState extends State<LinkHome> {
             ],
           ),
         ),
-        extendBody: true,
+        // extendBody: true,
         bottomNavigationBar: BottomNavBar(0, 1, 0, context),
         // )
       );
     }
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     centerTitle: false,
-    //     toolbarHeight: ScreenUtil().setHeight(60),
-    //     // toolbarHeight: (60),
-    //     elevation: 0,
-    //     backgroundColor: Colors.white,
-    //     leadingWidth: 0,
-    //     title: Container(
-    //         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-    //         height: ScreenUtil().setHeight(36),
-    //         width: ScreenUtil().setWidth(120),
-    //         // height: (36),
-    //         // width: (120),
-    //         child: Row(
-    //           children: [
-    //             Text('Cab',
-    //                 style: TextStyle(
-    //                     fontFamily: 'Inter',
-    //                     fontWeight: FontWeight.w600,
-    //                     color: Colors.black,
-    //                     fontSize: ScreenUtil().setSp(27))),
-    //             Text('Wala',
-    //                 style: TextStyle(
-    //                     fontFamily: 'Inter',
-    //                     fontWeight: FontWeight.w600,
-    //                     color: Color.fromRGBO(9, 100, 140, 1),
-    //                     fontSize: ScreenUtil().setSp(27)))
-    //           ],
-    //         )),
-    //     // fontSize: (30)))),
-
-    //     actions: [
-    //       Padding(
-    //         padding:
-    //             // EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
-    //             const EdgeInsets.symmetric(horizontal: (20)),
-    //         child: SvgPicture.asset("images/logout.svg"),
-    //       )
-    //     ],
-    //   ),
-    //   body: Center(
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.start,
-    //       children: <Widget>[
-    //         Row(
-    //           mainAxisAlignment: MainAxisAlignment.center,
-    //           children: [
-    //             Container(
-    //               alignment: Alignment.center,
-    //               child: Text(
-    //                 "Drivers",
-    //                 style: TextStyle(
-    //                     fontSize: 16,
-    //                     color: Color.fromRGBO(9, 100, 140, 1),
-    //                     fontWeight: FontWeight.w600),
-    //               ),
-    //               width: ScreenUtil().setWidth(132),
-    //               decoration: BoxDecoration(
-    //                   border: Border(
-    //                       bottom: BorderSide(
-    //                           width: 2,
-    //                           color: Color.fromRGBO(9, 100, 140, 1)))),
-    //             ),
-    //             SizedBox(
-    //               width: ScreenUtil().setWidth(20),
-    //             ),
-    //             InkWell(
-    //               onTap: () {
-    //                 setState(() {
-    //                   page = 1;
-    //                 });
-    //               },
-    //               child: Container(
-    //                 alignment: Alignment.center,
-    //                 child: Text(
-    //                   "Cabs",
-    //                   style: TextStyle(
-    //                       fontSize: 16,
-    //                       color: Color.fromRGBO(9, 100, 140, 1),
-    //                       fontWeight: FontWeight.w600),
-    //                 ),
-    //                 width: ScreenUtil().setWidth(132),
-    //               ),
-    //             )
-    //           ],
-    //         )
-    //       ],
-    //     ),
-    //   ),
-    //   extendBody: true,
-    //   bottomNavigationBar: BottomNavBar(0, 1, 0, context),
-    //   // )
-    // );
   }
 }
 

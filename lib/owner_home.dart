@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'login.dart';
 import 'widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cabwala/add_manager.dart';
@@ -14,6 +16,61 @@ class OwnerHome extends StatefulWidget {
 }
 
 class _OwnerHomeState extends State<OwnerHome> {
+
+   Future<void> showLogoutAlert() async {
+    showDialog(context: context,
+        builder: (BuildContext context){
+          return  AlertDialog(
+            // title: const Text(""),
+            content: const Text("Do you want to logout?"),
+            actions: [
+              ElevatedButton(
+                style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
+                 overlayColor: MaterialStateProperty.all<Color>(Colors.white),
+                // Add more style properties as needed
+                ),
+                onPressed: logoutUser,
+              child: const Text("Yes")),
+              ElevatedButton(
+                style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF09648C)), // Set the background color
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set the text color
+                 overlayColor: MaterialStateProperty.all<Color>(Colors.white),
+                // Add more style properties as needed
+                ),onPressed: (){
+                Navigator.of(context).pop();
+              }, child: const Text("No")),
+            ],
+          );
+        }
+    );
+  }
+
+  void logoutUser() async {
+  FirebaseAuth auth = FirebaseAuth.instance;
+  await auth.signOut();
+  print('User logged out');
+
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+        builder: (context) => const Login()));
+
+  User? user = auth.currentUser;
+
+  if (user != null) {
+    // User is logged in
+    String uid = user.uid;
+    String email = user.email!;
+    // Access other user properties as needed
+    print('User is logged in. UID: $uid, Email: $email');
+  } else {
+    // No user is currently logged in
+    print('No user is currently logged in');
+  }
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,12 +106,15 @@ class _OwnerHomeState extends State<OwnerHome> {
         // fontSize: (30)))),
 
         actions: [
-          Padding(
+          GestureDetector(
+            onTap:showLogoutAlert,
+          child :Padding(
             padding:
                 // EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
                 const EdgeInsets.symmetric(horizontal: (20)),
-            child: SvgPicture.asset("images/profile.svg"),
-          )
+            child: SvgPicture.asset("images/logout.svg"),
+          ),
+          ),
         ],
       ),
       body: Center(
